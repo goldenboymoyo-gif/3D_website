@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import HeroScene from './HeroScene.jsx';
-import Portrait from './Portrait.jsx';
 import { FiArrowDown } from 'react-icons/fi';
 import SocialLinks from './SocialLinks.jsx';
 
@@ -24,12 +23,9 @@ export default function Hero() {
     <section
       id="home"
       ref={rootRef}
-      className="cutout-stage relative h-screen min-h-[640px] w-full overflow-hidden bg-hero-gradient flex items-center pt-20 md:pt-32"
+      className="relative h-screen min-h-[640px] w-full overflow-hidden bg-hero-gradient flex items-center pt-20 md:pt-32"
     >
       <HeroScene />
-
-      {/* cutout portrait — tinted silhouette behind text, like lobod.rocks */}
-      <Portrait />
 
       {/* readability scrim so text stays legible over the 3D scene */}
       <div className="absolute inset-0 bg-gradient-to-b from-base/10 via-transparent to-base pointer-events-none" />
