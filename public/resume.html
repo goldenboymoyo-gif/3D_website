@@ -265,21 +265,8 @@
   /* Print styles */
   @media print {
     body { background: white; color: #111; }
-    :root {
-      --base: #ffffff;
-      --surface: #f9f9f9;
-      --crimson: #DC2626;
-      --ink: #111111;
-      --muted: #555555;
-      --border: #dddddd;
-    }
     .no-print { display: none !important; }
     .resume { padding: 0; max-width: 100%; }
-    .header { border-bottom-color: var(--crimson); }
-    .project-tech span { border-color: #ccc; color: #555; }
-    .journey-list li::before { border-color: var(--crimson); background: white; }
-    .stat-box { border-color: #ccc; }
-    a { color: var(--crimson) !important; }
   }
 </style>
 </head>
@@ -299,9 +286,10 @@ function downloadPDF() {
   var opt = {
     margin:        [0.5, 0.5, 0.5, 0.5],
     filename:      'Bright_Moyo_Resume.pdf',
-    image:         { type: 'jpeg', quality: 0.98 },
-    html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
-    jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' }
+    image:         { type: 'jpeg', quality: 0.95 },
+    html2canvas:   { scale: 1.5, backgroundColor: '#0A0A0A', useCORS: true, media: false },
+    jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
+    enableLinks:   true
   };
   html2pdf().set(opt).from(element).save().then(function() {
     btn.textContent = 'Download PDF';

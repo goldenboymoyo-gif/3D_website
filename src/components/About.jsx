@@ -87,7 +87,7 @@ export default function About() {
             owning an idea from sketch to shipped feature.
           </p>
 
-          <div className="about-reveal mt-8 grid grid-cols-3 gap-4">
+          <div className="about-reveal mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="border border-white/10 p-5">
               <h4 className="text-crimson text-xs uppercase tracking-widest mb-2">Mission</h4>
               <p className="text-sm text-muted">Build products that feel effortless to use, even when the engineering behind them isn't.</p>
