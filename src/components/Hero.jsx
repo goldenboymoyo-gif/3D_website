@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import HeroScene from './HeroScene.jsx';
 import Portrait from './Portrait.jsx';
 import { FiArrowDown } from 'react-icons/fi';
 import SocialLinks from './SocialLinks.jsx';
@@ -24,13 +23,8 @@ export default function Hero() {
     <section
       id="home"
       ref={rootRef}
-      className="relative h-screen min-h-[640px] w-full overflow-hidden bg-hero-gradient flex items-center pt-20 md:pt-32"
+      className="relative h-screen min-h-[640px] w-full overflow-hidden bg-base flex items-center pt-20 md:pt-32"
     >
-      <HeroScene />
-
-      {/* readability scrim so text stays legible over the 3D scene */}
-      <div className="absolute inset-0 bg-gradient-to-b from-base/10 via-transparent to-base pointer-events-none" />
-
       <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-8 md:pr-16 pointer-events-none hidden md:flex items-center justify-center" style={{ perspective: '2000px' }}>
         <div className="pointer-events-auto">
           <Portrait />
