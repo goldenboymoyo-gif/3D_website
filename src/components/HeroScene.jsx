@@ -1,18 +1,13 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-/**
- * Abstract "developer workspace" stand-in for a Spline scene: a rotating
- * wireframe icosahedron core surrounded by a particle field, with subtle
- * mouse-parallax on the camera for depth. Swap this component out for a
- * real <spline-viewer> embed once you've built a scene in Spline —
- * everything here is plain Three.js so there's no external asset dependency.
- */
 export default function HeroScene() {
   const mountRef = useRef(null);
 
   useEffect(() => {
     const mount = mountRef.current;
+    if (!mount) return;
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const scene = new THREE.Scene();
@@ -25,7 +20,6 @@ export default function HeroScene() {
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
-    // Wireframe core
     const coreGeo = new THREE.IcosahedronGeometry(2.1, 1);
     const coreMat = new THREE.MeshBasicMaterial({ color: 0xdc2626, wireframe: true, transparent: true, opacity: 0.55 });
     const core = new THREE.Mesh(coreGeo, coreMat);
@@ -36,7 +30,6 @@ export default function HeroScene() {
     const inner = new THREE.Mesh(innerGeo, innerMat);
     scene.add(inner);
 
-    // Particle field forming a loose outer sphere
     const particleCount = 500;
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
@@ -55,7 +48,6 @@ export default function HeroScene() {
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // A few floating accent points (like "UI card" markers) in crimson
     const accentGeo = new THREE.BufferGeometry();
     const accentCount = 24;
     const accentPositions = new Float32Array(accentCount * 3);
@@ -73,13 +65,40 @@ export default function HeroScene() {
     scene.add(accents);
 
     let targetRotX = 0, targetRotY = 0;
+    let currentRotX = 0, currentRotY = 0;
+    let frameId;
+
     const handleMouseMove = (e) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
       targetRotY = x * 0.4;
       targetRotX = y * 0.25;
     };
-    window.addEventListener('mousemove', handleMouseMove);
+
+    const handleDeviceOrientation = (e) => {
+      if (e.gamma === null || e.beta === null) return;
+      targetRotY = Math.max(-1, Math.min(1, (e.gamma / 45) * 0.5));
+      targetRotX = Math.max(-1, Math.min(1, ((e.beta - 45) / 45) * 0.5));
+    };
+
+    const handleTouch = (e) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        const x = (touch.clientX / window.innerWidth) * 2 - 1;
+        const y = (touch.clientY / window.innerHeight) * 2 - 1;
+        targetRotY = x * 0.4;
+        targetRotX = y * 0.25;
+      }
+    };
+
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (isTouchDevice) {
+      window.addEventListener('touchmove', handleTouch, { passive: true });
+      window.addEventListener('deviceorientation', handleDeviceOrientation, { passive: true });
+    } else {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
 
     const handleResize = () => {
       camera.aspect = mount.clientWidth / mount.clientHeight;
@@ -88,35 +107,48 @@ export default function HeroScene() {
     };
     window.addEventListener('resize', handleResize);
 
-    let frameId;
+    let time = 0;
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      if (!prefersReducedMotion) {
-        core.rotation.y += 0.0022;
-        core.rotation.x += 0.0009;
-        inner.rotation.y -= 0.0016;
-        particles.rotation.y += 0.0006;
-        accents.rotation.y += 0.0006;
+      time += 0.016;
 
-        // ease scene rotation toward mouse target for parallax depth
-        scene.rotation.y += (targetRotY - scene.rotation.y) * 0.04;
-        scene.rotation.x += (targetRotX - scene.rotation.x) * 0.04;
-      }
+      core.rotation.y += 0.0022;
+      core.rotation.x += 0.0009;
+      inner.rotation.y -= 0.0016;
+      particles.rotation.y += 0.0006;
+      accents.rotation.y += 0.0006;
+
+      const idleX = Math.sin(time * 0.4) * 0.15;
+      const idleY = Math.cos(time * 0.28) * 0.1;
+
+      currentRotX += (targetRotX + idleX - currentRotX) * 0.04;
+      currentRotY += (targetRotY + idleY - currentRotY) * 0.04;
+
+      scene.rotation.y = currentRotY;
+      scene.rotation.x = currentRotX;
+
       renderer.render(scene, camera);
     };
     animate();
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (isTouchDevice) {
+        window.removeEventListener('touchmove', handleTouch);
+        window.removeEventListener('deviceorientation', handleDeviceOrientation);
+      } else {
+        window.removeEventListener('mousemove', handleMouseMove);
+      }
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
       coreGeo.dispose(); coreMat.dispose();
       innerGeo.dispose(); innerMat.dispose();
       particleGeo.dispose(); particleMat.dispose();
       accentGeo.dispose(); accentMat.dispose();
-      mount.removeChild(renderer.domElement);
+      if (mount.contains(renderer.domElement)) {
+        mount.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
