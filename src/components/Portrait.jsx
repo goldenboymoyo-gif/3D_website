@@ -15,7 +15,7 @@ export default function Portrait() {
       const progress = Math.min(scrollY / vh, 1);
       gsap.set(el, {
         y: progress * -80,
-        opacity: 0.42 - progress * 0.35,
+        opacity: 0.85 - progress * 0.75,
       });
     };
 
