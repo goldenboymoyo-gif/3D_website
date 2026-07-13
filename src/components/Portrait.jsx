@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import bright3D from "../assets/bright_3D.png";
 
@@ -12,12 +12,19 @@ export default function Portrait() {
         damping:15
     });
 
-    const rotateY = useSpring(useTransform(mouseX, [-300,300],[-15,15]),{
-        stiffness:120,
-        damping:15
-    });
-
     const [scroll,setScroll]=useState(0);
+    const controls = useAnimation();
+
+    useEffect(()=>{
+        controls.start({
+            rotateY: [0,360],
+            transition:{
+                duration:12,
+                repeat:Infinity,
+                ease:"linear"
+            }
+        });
+    },[]);
 
     useEffect(()=>{
 
@@ -49,19 +56,10 @@ export default function Portrait() {
 
         <motion.div
 
-        animate={{
-            y:[-10,10,-10]
-        }}
-
-        transition={{
-            duration:5,
-            repeat:Infinity,
-            ease:"easeInOut"
-        }}
+        animate={controls}
 
         style={{
             rotateX,
-            rotateY,
             opacity:1-scroll,
             scale:1-scroll*0.2,
             filter:`blur(${scroll*6}px)`,
