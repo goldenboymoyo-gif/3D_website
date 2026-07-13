@@ -105,6 +105,30 @@ body.touch-device a, body.touch-device button {
   user-select: none;
 }
 
+.cutout-stage {
+  position: relative;
+}
+
+.cutout-fig {
+  position: absolute;
+  top: -6vh;
+  right: -3vw;
+  width: min(38vw, 420px);
+  z-index: 0;
+  pointer-events: none;
+  filter: brightness(0) saturate(100%) invert(74%) sepia(33%) saturate(420%) hue-rotate(347deg) brightness(91%) contrast(86%);
+  opacity: 0.42;
+  transition: opacity 0.6s;
+}
+
+@media (max-width: 820px) {
+  .cutout-fig {
+    width: 54vw;
+    top: 0;
+    opacity: 0.28;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

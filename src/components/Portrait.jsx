@@ -1,87 +1,35 @@
-import { motion, useMotionValue, useSpring, useTransform, useAnimation } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import bright3D from "../assets/bright_3D.png";
 
 export default function Portrait() {
+  const figRef = useRef(null);
 
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+  useEffect(() => {
+    const el = figRef.current;
+    if (!el) return;
 
-    const rotateX = useSpring(useTransform(mouseY, [-300,300],[15,-15]),{
-        stiffness:120,
-        damping:15
-    });
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      const progress = Math.min(scrollY / vh, 1);
+      gsap.set(el, {
+        y: progress * -80,
+        opacity: 0.42 - progress * 0.35,
+      });
+    };
 
-    const [scroll,setScroll]=useState(0);
-    const controls = useAnimation();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    useEffect(()=>{
-        controls.start({
-            rotateY: [0,360],
-            transition:{
-                duration:12,
-                repeat:Infinity,
-                ease:"linear"
-            }
-        });
-    },[]);
-
-    useEffect(()=>{
-
-        const move=(e)=>{
-            mouseX.set(e.clientX-window.innerWidth/2);
-            mouseY.set(e.clientY-window.innerHeight/2);
-        }
-
-        window.addEventListener("mousemove",move);
-
-        const scrolling=()=>{
-
-            const max=document.body.scrollHeight-window.innerHeight;
-
-            setScroll(window.scrollY/max);
-
-        }
-
-        window.addEventListener("scroll",scrolling);
-
-        return()=>{
-            window.removeEventListener("mousemove",move);
-            window.removeEventListener("scroll",scrolling);
-        }
-
-    },[]);
-
-    return(
-
-        <motion.div
-
-        animate={controls}
-
-        style={{
-            rotateX,
-            opacity:1-scroll,
-            scale:1-scroll*0.2,
-            filter:`blur(${scroll*6}px)`,
-            transformStyle:"preserve-3d"
-        }}
-
-        whileHover={{
-            scale:1.08
-        }}
-
-        className="portrait mix-blend-screen"
-
-        >
-
-            <img
-            src={bright3D}
-            alt=""
-            draggable="false"
-            />
-
-        </motion.div>
-
-    )
-
+  return (
+    <img
+      ref={figRef}
+      src={bright3D}
+      alt=""
+      draggable="false"
+      className="cutout-fig"
+    />
+  );
 }

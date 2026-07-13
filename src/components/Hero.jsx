@@ -24,18 +24,15 @@ export default function Hero() {
     <section
       id="home"
       ref={rootRef}
-      className="relative h-screen min-h-[640px] w-full overflow-hidden bg-hero-gradient flex items-center pt-20 md:pt-32"
+      className="cutout-stage relative h-screen min-h-[640px] w-full overflow-hidden bg-hero-gradient flex items-center pt-20 md:pt-32"
     >
       <HeroScene />
 
+      {/* cutout portrait — tinted silhouette behind text, like lobod.rocks */}
+      <Portrait />
+
       {/* readability scrim so text stays legible over the 3D scene */}
       <div className="absolute inset-0 bg-gradient-to-b from-base/10 via-transparent to-base pointer-events-none" />
-
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-8 md:pr-16 pointer-events-none hidden md:flex items-center justify-center" style={{ perspective: '2000px' }}>
-        <div className="pointer-events-auto">
-          <Portrait />
-        </div>
-      </div>
 
       <div className="relative z-10 px-6 md:px-12 max-w-3xl">
         <div className="hero-eyebrow font-body text-xs tracking-[0.35em] text-crimson uppercase mb-6">
