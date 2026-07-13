@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bright Moyo — Resume</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --base: #0A0A0A;
+    --surface: #111827;
+    --crimson: #DC2626;
+    --ink: #FFFFFF;
+    --muted: #9CA3AF;
+    --border: rgba(255,255,255,0.1);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--base);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .no-print {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+  }
+
+  .no-print button {
+    background: var(--crimson);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .no-print button:hover { background: #b91c1c; }
+  .no-print .back-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .no-print .back-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+
+  .resume {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 48px 80px;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 2px solid var(--crimson);
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .header .title {
+    font-size: 16px;
+    color: var(--crimson);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 14px;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .contact-row a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-row a:hover { color: var(--crimson); }
+  .contact-row .sep { color: rgba(255,255,255,0.2); }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--crimson);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+
+  /* Summary */
+  .summary p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px 16px;
+    font-size: 13px;
+  }
+  .skills-grid .cat {
+    font-weight: 600;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+  }
+  .skills-grid .list { color: var(--muted); }
+
+  /* Projects */
+  .project-item {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+  .project-header h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .project-header .cat {
+    font-size: 11px;
+    color: var(--crimson);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .project-item p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .project-tech span {
+    font-size: 10px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+  .project-link {
+    font-size: 11px;
+    color: var(--crimson);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  /* Experience */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 8px 20px;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .exp-item .role {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .exp-item .desc { color: var(--muted); line-height: 1.6; }
+
+  /* Education / Journey */
+  .journey-list {
+    list-style: none;
+    padding: 0;
+  }
+  .journey-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .journey-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid var(--crimson);
+    background: var(--base);
+  }
+  .journey-list li:last-child { margin-bottom: 0; }
+  .journey-list .future {
+    border: 1px solid rgba(220,38,38,0.3);
+    background: rgba(220,38,38,0.05);
+    padding: 10px 14px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+  .journey-list .future::before { display: none; }
+  .journey-list .future strong { color: var(--crimson); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .stat-box {
+    border: 1px solid var(--border);
+    padding: 14px 8px;
+  }
+  .stat-box .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--crimson);
+  }
+  .stat-box .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* Print styles */
+  @media print {
+    body { background: white; color: #111; }
+    :root {
+      --base: #ffffff;
+      --surface: #f9f9f9;
+      --crimson: #DC2626;
+      --ink: #111111;
+      --muted: #555555;
+      --border: #dddddd;
+    }
+    .no-print { display: none !important; }
+    .resume { padding: 0; max-width: 100%; }
+    .header { border-bottom-color: var(--crimson); }
+    .project-tech span { border-color: #ccc; color: #555; }
+    .journey-list li::before { border-color: var(--crimson); background: white; }
+    .stat-box { border-color: #ccc; }
+    a { color: var(--crimson) !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <button class="back-btn" onclick="window.location.href='/'">Back to Portfolio</button>
+  <button id="downloadPdfBtn" onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<script>
+function downloadPDF() {
+  var btn = document.getElementById('downloadPdfBtn');
+  btn.textContent = 'Generating...';
+  btn.disabled = true;
+  var element = document.querySelector('.resume');
+  var opt = {
+    margin:        [0.5, 0.5, 0.5, 0.5],
+    filename:      'Bright_Moyo_Resume.pdf',
+    image:         { type: 'jpeg', quality: 0.98 },
+    html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
+    jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save().then(function() {
+    btn.textContent = 'Download PDF';
+    btn.disabled = false;
+  });
+}
+var params = new URLSearchParams(window.location.search);
+if (params.get('download') === '1') {
+  window.addEventListener('load', function() {
+    setTimeout(downloadPDF, 600);
+  });
+}
+</script>
+
+<div class="resume">
+
+  <!-- Header -->
+  <header class="header">
+    <h1>Bright Moyo</h1>
+    <div class="title">Software Developer</div>
+    <div class="contact-row">
+      <span>Victoria Falls, Zimbabwe</span>
+      <span class="sep">|</span>
+      <a href="mailto:goldenboymoyo@gmail.com">goldenboymoyo@gmail.com</a>
+      <span class="sep">|</span>
+      <a href="tel:+263774765928">+263 77 476 5928</a>
+      <span class="sep">|</span>
+      <a href="https://linkedin.com/in/bright-moyo-8728b83ab" target="_blank">LinkedIn</a>
+      <span class="sep">|</span>
+      <a href="https://github.com/goldenboymoyo-gif" target="_blank">GitHub</a>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-box"><div class="num">14+</div><div class="label">Projects</div></div>
+    <div class="stat-box"><div class="num">22+</div><div class="label">Technologies</div></div>
+    <div class="stat-box"><div class="num">2026</div><div class="label">Started Building</div></div>
+    <div class="stat-box"><div class="num">9</div><div class="label">Client Projects</div></div>
+  </div>
+
+  <!-- Summary -->
+  <section class="section summary">
+    <div class="section-title">Professional Summary</div>
+    <p>
+      Software developer and UI/UX designer based in Victoria Falls, Zimbabwe, starting my professional journey in 2026. Skilled in frontend development with a focus on React, Next.js, and responsive design. Passionate about turning ideas into polished digital products that combine beautiful design with genuinely good user experience. Currently learning backend development with Django and Firebase to become a full-stack developer building products used across Africa.
+    </p>
+  </section>
+
+  <!-- Skills -->
+  <section class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="cat">Frontend</div>
+      <div class="list">HTML5, CSS3, JavaScript (ES6+), React, Next.js, Tailwind CSS, GSAP, Framer Motion, Three.js, Responsive Design</div>
+      <div class="cat">Backend</div>
+      <div class="list">Node.js, Express.js, Python, Django</div>
+      <div class="cat">Database</div>
+      <div class="list">MongoDB, Firebase, SQLite</div>
+      <div class="cat">Tools</div>
+      <div class="list">Git, GitHub, Figma, VS Code, Vercel, Postman</div>
+      <div class="cat">Design</div>
+      <div class="list">UI/UX Design, Prototyping, User Research, Interaction Design</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section">
+    <div class="section-title">Featured Projects</div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h3>Vic Falls TeleVivi</h3>
+        <span class="cat">Tourism Website</span>
+      </div>
+      <p>A modern tourism platform showcasing Victoria Falls through engaging storytelling, destination highlights, multimedia content, and responsive design.</p>
+      <div class="project-tech"><span>React</span><span>Tailwind CSS</span><span>GSAP</span><span>Vercel</span></div>
+      <br><a class="project-link" href="https://vic-falls-televivi.vercel.app/" target="_blank">View Live Site &rarr;</a>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h3>Ironvale Construction</h3>
+        <span class="cat">Construction Company Website</span>
+      </div>
+      <p>A professional construction company website featuring premium branding, modern layouts, responsive sections, service showcases, and contact functionality.</p>
+      <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Three.js</span></div>
+      <br><a class="project-link" href="https://ironvale-sonstruction.vercel.app/" target="_blank">View Live Site &rarr;</a>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h3>HomeLink</h3>
+        <span class="cat">Real Estate Platform</span>
+      </div>
+      <p>A modern real estate website designed to help users browse and discover properties through an intuitive interface and engaging user experience.</p>
+      <div class="project-tech"><span>React</span><span>Vite</span><span>Node.js</span><span>Express</span><span>MongoDB</span></div>
+      <br><a class="project-link" href="https://homelink-one.vercel.app/" target="_blank">View Live Site &rarr;</a>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h3>VFBA Attendance System</h3>
+        <span class="cat">Gym Management System</span>
+      </div>
+      <p>A boxer attendance management system that allows coaches and athletes to manage attendance, schedules, notifications, and training activities.</p>
+      <div class="project-tech"><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>Firebase</span></div>
+      <br><a class="project-link" href="https://vfba-attendance.vercel.app/" target="_blank">View Live Site &rarr;</a>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h3>Brief Wire</h3>
+        <span class="cat">News Application</span>
+      </div>
+      <p>A news application that delivers current headlines through a clean, responsive interface powered by a news API.</p>
+      <div class="project-tech"><span>React</span><span>News API</span><span>Tailwind CSS</span></div>
+      <br><a class="project-link" href="https://brief-wire.vercel.app/" target="_blank">View Live Site &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section">
+    <div class="section-title">Experience & Roles</div>
+    <div class="exp-item">
+      <div class="role">Software Developer</div>
+      <div class="desc">Designing and building responsive web applications using modern frontend technologies.</div>
+    </div>
+    <div class="exp-item">
+      <div class="role">Frontend Developer</div>
+      <div class="desc">Building scalable React applications with clean UI and engaging interactions.</div>
+    </div>
+    <div class="exp-item">
+      <div class="role">UI/UX Designer</div>
+      <div class="desc">Designing intuitive user experiences and modern interfaces.</div>
+    </div>
+    <div class="exp-item">
+      <div class="role">Digital Product Builder</div>
+      <div class="desc">Transforming ideas into functional digital products through design and development.</div>
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section class="section">
+    <div class="section-title">Learning Journey</div>
+    <ul class="journey-list">
+      <li>Started learning HTML &amp; CSS</li>
+      <li>Learned JavaScript fundamentals</li>
+      <li>Built first responsive websites</li>
+      <li>Started learning React &amp; component-based architecture</li>
+      <li>Designed UI/UX projects and learned prototyping</li>
+      <li>Built HomeLink &mdash; full-stack real estate platform</li>
+      <li>Built Ironvale Construction &mdash; 3D-enhanced company site</li>
+      <li>Built Vic Falls TeleVivi &mdash; tourism platform with GSAP animations</li>
+      <li>Built VFBA Attendance System &mdash; Next.js gym management app</li>
+      <li>Building BoxArena &mdash; African boxing platform</li>
+      <li>Learning backend development with Django &amp; Firebase</li>
+      <li class="future">
+        <strong>Future Goal</strong><br>
+        Become a Full Stack Software Developer building products used across Africa.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Education -->
+  <section class="section">
+    <div class="section-title">Education</div>
+    <div class="exp-item">
+      <div class="role">Product Design Student</div>
+      <div class="desc">Learning user research, prototyping, product strategy, and interaction design.</div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
