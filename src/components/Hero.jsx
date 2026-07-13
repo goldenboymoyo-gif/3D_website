@@ -1,13 +1,11 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import HeroScene from './HeroScene.jsx';
-import HeroPortrait3D from './HeroPortrait3D.jsx';
 import { FiArrowDown } from 'react-icons/fi';
 import SocialLinks from './SocialLinks.jsx';
 
 export default function Hero() {
   const rootRef = useRef(null);
-  const portraitWrapRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -16,18 +14,7 @@ export default function Hero() {
         .from('.hero-line span', { yPercent: 110, duration: 1, stagger: 0.1 }, '-=0.3')
         .from('.hero-sub', { y: 16, opacity: 0, duration: 0.7 }, '-=0.4')
         .from('.hero-cta', { y: 16, opacity: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
-        .from('.hero-scroll-cue', { opacity: 0, duration: 0.6 }, '-=0.3')
-        .from('.hero-portrait-3d-wrap', { y: 30, opacity: 0, scale: 0.92, duration: 0.9, ease: 'power3.out' }, '-=0.9');
-
-      // gentle continuous float
-      gsap.to('.hero-portrait-3d-wrap', {
-        y: 14,
-        duration: 2.6,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        delay: 1.4,
-      });
+        .from('.hero-scroll-cue', { opacity: 0, duration: 0.6 }, '-=0.3');
     }, rootRef);
     return () => ctx.revert();
   }, []);
@@ -78,14 +65,6 @@ export default function Hero() {
         <div className="hero-cta mt-8">
           <SocialLinks size="md" variant="outline" />
         </div>
-      </div>
-
-      {/* 3D depth-parallax portrait — visible on all screens */}
-      <div
-        ref={portraitWrapRef}
-        className="hero-portrait-3d-wrap absolute z-10 right-[4%] lg:right-[8%] top-1/2 -translate-y-1/2 w-48 h-64 sm:w-56 sm:h-72 lg:w-64 lg:h-80"
-      >
-        <HeroPortrait3D className="w-full h-full" />
       </div>
 
       <div className="hero-scroll-cue absolute bottom-10 right-8 md:right-12 z-10 flex flex-col items-center gap-3 text-muted">
