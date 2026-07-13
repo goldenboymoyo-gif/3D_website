@@ -70,7 +70,7 @@ export default function Portrait() {
             scale:1.08
         }}
 
-        className="portrait"
+        className="portrait mix-blend-screen"
 
         >
 
