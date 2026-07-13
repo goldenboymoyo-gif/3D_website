@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import HeroScene from './HeroScene.jsx';
+import HeroPortrait3D from './HeroPortrait3D.jsx';
 import { FiArrowDown } from 'react-icons/fi';
-import profileImg from '../assets/profile.jpg';
 import SocialLinks from './SocialLinks.jsx';
 
 export default function Hero() {
   const rootRef = useRef(null);
-  const cardRef = useRef(null);
+  const portraitWrapRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -17,10 +17,10 @@ export default function Hero() {
         .from('.hero-sub', { y: 16, opacity: 0, duration: 0.7 }, '-=0.4')
         .from('.hero-cta', { y: 16, opacity: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
         .from('.hero-scroll-cue', { opacity: 0, duration: 0.6 }, '-=0.3')
-        .from('.hero-portrait-card', { y: 30, opacity: 0, scale: 0.92, duration: 0.9, ease: 'power3.out' }, '-=0.9');
+        .from('.hero-portrait-3d-wrap', { y: 30, opacity: 0, scale: 0.92, duration: 0.9, ease: 'power3.out' }, '-=0.9');
 
       // gentle continuous float
-      gsap.to('.hero-portrait-card', {
+      gsap.to('.hero-portrait-3d-wrap', {
         y: 14,
         duration: 2.6,
         ease: 'sine.inOut',
@@ -31,17 +31,6 @@ export default function Hero() {
     }, rootRef);
     return () => ctx.revert();
   }, []);
-
-  const handleCardMove = (e) => {
-    const el = cardRef.current;
-    const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(el, { rotateY: px * 10, rotateX: -py * 10, duration: 0.5, ease: 'power2.out' });
-  };
-  const handleCardLeave = () => {
-    gsap.to(cardRef.current, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'power3.out' });
-  };
 
   return (
     <section
@@ -91,19 +80,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Floating profile card — sits over the 3D scene on larger screens */}
+      {/* 3D depth-parallax portrait — visible on all screens */}
       <div
-        ref={cardRef}
-        onMouseMove={handleCardMove}
-        onMouseLeave={handleCardLeave}
-        className="hero-portrait-card hidden lg:block absolute right-[8%] top-1/2 -translate-y-1/2 z-10 [transform-style:preserve-3d]"
-        style={{ perspective: 900 }}
-        data-cursor-hover
+        ref={portraitWrapRef}
+        className="hero-portrait-3d-wrap absolute z-10 right-[4%] lg:right-[8%] top-1/2 -translate-y-1/2 w-48 h-64 sm:w-56 sm:h-72 lg:w-64 lg:h-80"
       >
-        <div className="relative w-64 aspect-[4/5] overflow-hidden border border-white/15 shadow-glow">
-          <img src={profileImg} alt="Bright Moyo" className="w-full h-full object-cover" fetchpriority="high" />
-          <div className="absolute inset-0 bg-gradient-to-t from-base/60 via-transparent to-transparent" />
-        </div>
+        <HeroPortrait3D className="w-full h-full" />
       </div>
 
       <div className="hero-scroll-cue absolute bottom-10 right-8 md:right-12 z-10 flex flex-col items-center gap-3 text-muted">
