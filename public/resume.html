@@ -287,7 +287,75 @@ function downloadPDF() {
     margin:        [0.5, 0.5, 0.5, 0.5],
     filename:      'Bright_Moyo_Resume.pdf',
     image:         { type: 'jpeg', quality: 0.95 },
-    html2canvas:   { scale: 1.5, backgroundColor: '#0A0A0A', useCORS: true, media: false },
+    html2canvas:   {
+      scale: 1.5,
+      backgroundColor: '#ffffff',
+      useCORS: true,
+      media: false,
+      onclone: function(doc) {
+        var resume = doc.querySelector('.resume');
+        if (!resume) return;
+        resume.style.background = '#ffffff';
+        resume.style.color = '#111111';
+        resume.style.padding = '0';
+        var all = resume.querySelectorAll('*');
+        for (var i = 0; i < all.length; i++) {
+          var el = all[i];
+          var s = el.style;
+          if (getComputedStyle) {
+            var cs = getComputedStyle(el);
+            if (cs.color === 'rgb(255, 255, 255)' || cs.color === 'rgba(255, 255, 255, 1)') s.color = '#111111';
+            if (cs.color === 'rgb(156, 163, 175)' || cs.color === 'rgb(156, 163, 175)') s.color = '#555555';
+            if (cs.backgroundColor === 'rgba(0, 0, 0, 0)' || cs.backgroundColor === 'transparent') continue;
+            if (cs.backgroundColor.includes('10, 10, 10') || cs.backgroundColor.includes('17, 24, 39')) s.backgroundColor = '#ffffff';
+          }
+          if (cs.color && cs.color.includes('220, 38, 38')) s.color = '#111111';
+        }
+        var sectionTitles = resume.querySelectorAll('.section-title');
+        for (var j = 0; j < sectionTitles.length; j++) {
+          sectionTitles[j].style.color = '#111111';
+          sectionTitles[j].style.borderColor = '#cccccc';
+        }
+        var header = resume.querySelector('.header');
+        if (header) {
+          header.style.borderBottomColor = '#111111';
+          header.style.color = '#111111';
+        }
+        var title = resume.querySelector('.title');
+        if (title) title.style.color = '#333333';
+        var nums = resume.querySelectorAll('.num');
+        for (var k = 0; k < nums.length; k++) nums[k].style.color = '#111111';
+        var links = resume.querySelectorAll('a');
+        for (var l = 0; l < links.length; l++) links[l].style.color = '#111111';
+        var techs = resume.querySelectorAll('.project-tech span');
+        for (var m = 0; m < techs.length; m++) {
+          techs[m].style.borderColor = '#cccccc';
+          techs[m].style.color = '#555555';
+        }
+        var borders = resume.querySelectorAll('.stat-box, .project-item');
+        for (var n = 0; n < borders.length; n++) {
+          var bc = borders[n].style;
+          bc.borderColor = '#cccccc';
+        }
+        var future = resume.querySelector('.future');
+        if (future) {
+          future.style.borderColor = '#cccccc';
+          future.style.background = '#f5f5f5';
+        }
+        var futureStrong = resume.querySelectorAll('.future strong');
+        for (var p = 0; p < futureStrong.length; p++) futureStrong[p].style.color = '#111111';
+        var seps = resume.querySelectorAll('.sep');
+        for (var q = 0; q < seps.length; q++) seps[q].style.color = '#cccccc';
+        var lis = resume.querySelectorAll('.journey-list li');
+        for (var r = 0; r < lis.length; r++) {
+          lis[r].style.color = '#555555';
+        }
+        var circles = resume.querySelectorAll('.journey-list li');
+        for (var t = 0; t < circles.length; t++) {
+          circles[t].style.setProperty('--before-border', '#111111');
+        }
+      }
+    },
     jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
     enableLinks:   true
   };
