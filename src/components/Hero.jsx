@@ -53,7 +53,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-wrap gap-4">
           <a
             href="#projects"
-            className="hero-cta bg-crimson text-white px-8 py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-white hover:text-base transition-colors duration-300"
+            className="hero-cta bg-crimson text-white px-8 py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-crimson/80 transition-colors duration-300"
             data-cursor-hover
           >
             View Projects

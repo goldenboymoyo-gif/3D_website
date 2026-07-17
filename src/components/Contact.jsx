@@ -118,21 +118,17 @@ export default function Contact() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="contact-name" className="block text-xs uppercase tracking-widest text-muted mb-2">Name</label>
-              <input id="contact-name" name="name" required type="text" autoComplete="name" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors" />
+              <input id="contact-name" name="name" required type="text" autoComplete="name" placeholder="Your name" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
             </div>
             <div>
-              <label htmlFor="contact-email" className="block text-xs uppercase tracking-widest text-muted mb-2">Email</label>
-              <input id="contact-email" name="email" required type="email" autoComplete="email" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors" />
+              <input id="contact-email" name="email" required type="email" autoComplete="email" placeholder="your@email.com" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
             </div>
           </div>
           <div>
-            <label htmlFor="contact-subject" className="block text-xs uppercase tracking-widest text-muted mb-2">Subject</label>
-            <input id="contact-subject" name="subject" required type="text" autoComplete="off" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors" />
+            <input id="contact-subject" name="subject" required type="text" autoComplete="off" placeholder="Subject" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
           </div>
           <div>
-            <label htmlFor="contact-message" className="block text-xs uppercase tracking-widest text-muted mb-2">Message</label>
-            <textarea id="contact-message" name="message" required rows="5" autoComplete="off" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors resize-none" />
+            <textarea id="contact-message" name="message" required rows="5" autoComplete="off" placeholder="Your message..." className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors resize-none placeholder:text-muted/50" />
           </div>
 
           {error && (
@@ -151,7 +147,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={sending}
-            className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-white hover:text-base transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-crimson/80 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             data-cursor-hover
           >
             <FiSend size={14} /> {sending ? 'Sending...' : sent ? 'Sent!' : 'Send Message'}

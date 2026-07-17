@@ -158,6 +158,13 @@ html.light .chat-window {
   border: 1px solid rgba(0,0,0,0.1) !important;
   backdrop-filter: blur(24px) !important;
 }
+
+/* Dark mode: chatbot */
+.chat-window {
+  background: rgba(10, 10, 10, 0.97) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(24px) !important;
+}
 html.light .chat-prompt {
   background: rgba(255, 255, 255, 0.95) !important;
   border: 1px solid rgba(0,0,0,0.1) !important;
