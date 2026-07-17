@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   FiCode, FiGitBranch, FiFigma, FiDatabase, FiServer, FiTerminal, FiTrendingUp,
 } from 'react-icons/fi';
-import { SiReact, SiTailwindcss, SiJavascript, SiPython, SiDjango, SiFirebase, SiSqlite, SiVercel, SiHtml5, SiCss } from 'react-icons/si';
+import { SiReact, SiTailwindcss, SiJavascript, SiPython, SiTypescript, SiFirebase, SiSqlite, SiVercel, SiHtml5, SiCss } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +17,7 @@ const CATEGORIES = [
       { name: 'CSS', icon: SiCss },
       { name: 'JavaScript', icon: SiJavascript },
       { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
       { name: 'Tailwind CSS', icon: SiTailwindcss },
     ],
   },
@@ -26,7 +27,6 @@ const CATEGORIES = [
     skills: [
       { name: 'Node.js', icon: FiServer },
       { name: 'Python', icon: SiPython },
-      { name: 'Django', icon: SiDjango },
     ],
   },
   {

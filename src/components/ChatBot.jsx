@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiMessageCircle, FiX, FiSend, FiChevronRight } from 'react-icons/fi';
 import Logo from './Logo.jsx';
 
+const isLight = () => document.documentElement.classList.contains('light');
+
 const KB = [
   {
     keywords: ['project', 'work', 'portfolio', 'built', 'made', 'create'],
@@ -10,7 +12,7 @@ const KB = [
   },
   {
     keywords: ['skill', 'tech', 'stack', 'language', 'know', 'use', 'tool'],
-    answer: "Bright's tech stack includes:\n\n**Frontend:** React, Next.js, JavaScript, TypeScript, HTML, CSS, Tailwind CSS, Three.js, GSAP, Framer Motion\n\n**Backend:** Node.js, Express, Python, Django\n\n**Database:** Firebase, MongoDB, SQLite\n\n**Design & Marketing:** Figma, UI/UX Design, Digital Marketing, Brand Strategy\n\n**Tools:** Git, GitHub, VS Code, Vercel\n\n22+ technologies and always learning more!",
+    answer: "Bright's tech stack includes:\n\n**Frontend:** React, Next.js, JavaScript, TypeScript, HTML, CSS, Tailwind CSS, Three.js, GSAP, Framer Motion\n\n**Backend:** Node.js, Express, Python\n\n**Database:** Firebase, MongoDB, SQLite\n\n**Design & Marketing:** Figma, UI/UX Design, Digital Marketing, Brand Strategy\n\n**Tools:** Git, GitHub, VS Code, Vercel\n\n22+ technologies and always learning more!",
   },
   {
     keywords: ['experience', 'role', 'job', 'work', 'do'],
@@ -30,7 +32,7 @@ const KB = [
   },
   {
     keywords: ['journey', 'timeline', 'history', 'learn', 'start'],
-    answer: "Bright's journey:\n\n1. Started learning HTML & CSS\n2. Learned JavaScript\n3. Built first responsive website\n4. Started learning React\n5. Designed UI/UX projects\n6. Built HomeLink, Ironvale, TeleVivi\n7. Built VFBA Attendance System\n8. Currently learning backend (Django & Firebase)\n\n**Future goal:** Become a full-stack developer building products used across Africa.",
+    answer: "Bright's journey:\n\n1. Started learning HTML & CSS\n2. Learned JavaScript\n3. Built first responsive website\n4. Started learning React\n5. Designed UI/UX projects\n6. Built HomeLink, Ironvale, TeleVivi\n7. Built VFBA Attendance System\n8. Currently learning backend (Firebase & Python)\n\n**Future goal:** Become a full-stack developer building products used across Africa.",
   },
   {
     keywords: ['location', 'where', 'live', 'city', 'country'],
@@ -143,9 +145,25 @@ export default function ChatBot() {
 
   return (
     <>
+      {/* Attention prompt — appears when chat is closed */}
+      <AnimatePresence>
+        {!open && (
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ delay: 2, duration: 0.5 }}
+            className="chat-prompt fixed bottom-[5.5rem] right-6 z-[600] px-4 py-2.5 rounded-xl text-sm font-medium shadow-lg pointer-events-none"
+          >
+            <span className="text-ink">Ask me for help!</span>
+            <span className="ml-1.5 text-crimson">→</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Toggle button */}
       <motion.button
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => { setOpen((v) => !v); }}
         className="fixed bottom-6 right-6 z-[600] w-14 h-14 rounded-full bg-crimson text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         whileTap={{ scale: 0.9 }}
         aria-label={open ? 'Close chat' : 'Open chat'}
@@ -172,13 +190,8 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-24 right-6 z-[600] w-[360px] max-w-[calc(100vw-3rem)] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
-            style={{
-              height: 'min(520px, calc(100vh - 8rem))',
-              background: 'rgba(10, 10, 10, 0.95)',
-              backdropFilter: 'blur(24px)',
-              border: '1px solid rgba(255,255,255,0.1)',
-            }}
+            className="chat-window fixed bottom-24 right-6 z-[600] w-[360px] max-w-[calc(100vw-3rem)] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            style={{ height: 'min(520px, calc(100vh - 8rem))' }}
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">

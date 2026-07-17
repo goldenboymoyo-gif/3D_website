@@ -145,6 +145,77 @@ html.light .journey-dot-empty {
   background-color: #F8F9FA !important;
 }
 
+/* Light mode: core text and background overrides */
+html.light .text-ink { color: #111827 !important; }
+html.light .text-muted { color: #6B7280 !important; }
+html.light .bg-base { background-color: #F8F9FA !important; }
+html.light .bg-surface { background-color: #FFFFFF !important; }
+
+/* Light mode: chatbot */
+html.light .chat-window {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  backdrop-filter: blur(24px) !important;
+}
+html.light .chat-prompt {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+}
+html.light .chat-prompt .text-ink { color: #111827 !important; }
+
+/* Light mode: hero section text */
+html.light #home .text-ink { color: #111827 !important; }
+html.light #home .text-muted { color: #6B7280 !important; }
+
+/* Light mode: glass cards in hero */
+html.light .hero-right-card .glass {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+html.light .hero-right-card .text-ink { color: #111827 !important; }
+html.light .hero-right-card .text-muted { color: #6B7280 !important; }
+html.light .hero-right-card .border-white\/10 { border-color: rgba(0,0,0,0.08) !important; }
+
+/* Light mode: navbar */
+html.light nav { background: rgba(248,249,250,0.9) !important; backdrop-filter: blur(12px) !important; }
+html.light nav .text-ink { color: #111827 !important; }
+html.light nav .text-muted { color: #6B7280 !important; }
+
+/* Light mode: section headings */
+html.light h1, html.light h2, html.light h3, html.light h4 { color: #111827 !important; }
+
+/* Light mode: skill cards, experience cards, project cards */
+html.light .skill-card { background: rgba(255,255,255,0.6) !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light .skill-card span { color: #111827 !important; }
+html.light .exp-card { border-color: rgba(0,0,0,0.08) !important; }
+html.light .exp-card h3 { color: #111827 !important; }
+html.light .exp-card p { color: #6B7280 !important; }
+
+/* Light mode: about section */
+html.light .about-reveal p { color: #6B7280 !important; }
+html.light .about-reveal h2 { color: #111827 !important; }
+html.light .about-logo-reveal { background: rgba(255,255,255,0.5) !important; }
+
+/* Light mode: contact form */
+html.light #contact input,
+html.light #contact textarea {
+  background: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+  color: #111827 !important;
+}
+html.light #contact label { color: #6B7280 !important; }
+
+/* Light mode: footer */
+html.light footer { border-color: rgba(0,0,0,0.08) !important; }
+
+/* Light mode: journey timeline */
+html.light .journey-dot { border-color: #DC2626 !important; background: #F8F9FA !important; }
+html.light .journey-line { background: rgba(0,0,0,0.08) !important; }
+
+/* Light mode: project section */
+html.light .project-card { background: rgba(255,255,255,0.5) !important; border-color: rgba(0,0,0,0.08) !important; }
+
 /* Light mode hero scene override — handled via MutationObserver in HeroScene */
 
 .portrait {

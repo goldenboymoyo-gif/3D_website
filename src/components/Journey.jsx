@@ -16,7 +16,7 @@ const MILESTONES = [
   { label: 'Built VFBA Attendance System' },
   { label: 'Built Brief Wire News App' },
   { label: 'Building BoxArena (African Boxing Platform)' },
-  { label: 'Learning Backend Development (Django & Firebase)' },
+  { label: 'Learning Backend Development (Firebase & Python)' },
   { label: 'Future Goal', future: true },
 ];
 

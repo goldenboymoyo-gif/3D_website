@@ -19,6 +19,14 @@
     --border: rgba(255,255,255,0.1);
   }
 
+  html.light-resume {
+    --base: #F8F9FA;
+    --surface: #FFFFFF;
+    --ink: #111827;
+    --muted: #6B7280;
+    --border: rgba(0,0,0,0.1);
+  }
+
   body {
     font-family: 'Inter', sans-serif;
     background: var(--base);
@@ -55,6 +63,12 @@
     color: var(--ink);
   }
   .no-print .back-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+  .no-print .theme-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .no-print .theme-btn:hover { border-color: var(--crimson); color: var(--crimson); }
 
   .resume {
     max-width: 800px;
@@ -333,16 +347,59 @@
     .no-print { display: none !important; }
     .resume { padding: 0; max-width: 100%; }
   }
+
+  /* Light resume: journey dots */
+  html.light-resume .journey-list li::before {
+    background: var(--base);
+  }
+  html.light-resume .project-item {
+    border-bottom-color: rgba(0,0,0,0.05);
+  }
+  html.light-resume .contact-row .sep {
+    color: rgba(0,0,0,0.2);
+  }
 </style>
 </head>
 <body>
 
 <div class="no-print">
   <button class="back-btn" onclick="window.location.href='/'">Back to Portfolio</button>
+  <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">☀️ Light</button>
   <button id="downloadPdfBtn" onclick="downloadPDF()">Download PDF</button>
 </div>
 
 <script>
+function toggleTheme() {
+  var html = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  if (html.classList.contains('light-resume')) {
+    html.classList.remove('light-resume');
+    btn.textContent = '☀️ Light';
+    localStorage.setItem('bm-resume-theme', 'dark');
+  } else {
+    html.classList.add('light-resume');
+    btn.textContent = '🌙 Dark';
+    localStorage.setItem('bm-resume-theme', 'light');
+  }
+}
+
+// Restore saved theme
+(function() {
+  var saved = localStorage.getItem('bm-resume-theme');
+  if (saved === 'light') {
+    document.documentElement.classList.add('light-resume');
+    var btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = '🌙 Dark';
+  }
+  // Sync with portfolio theme
+  var portfolioTheme = localStorage.getItem('bm-theme');
+  if (!saved && portfolioTheme === 'light') {
+    document.documentElement.classList.add('light-resume');
+    var btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = '🌙 Dark';
+  }
+})();
+
 function downloadPDF() {
   var btn = document.getElementById('downloadPdfBtn');
   btn.textContent = 'Generating...';
@@ -442,7 +499,7 @@ if (params.get('download') === '1') {
   <!-- Header -->
   <header class="header">
     <h1>Bright Moyo</h1>
-    <div class="title">Software Developer</div>
+    <div class="title">Software Developer &amp; Digital Marketer</div>
     <div class="contact-row">
       <span>Victoria Falls, Zimbabwe</span>
       <span class="sep">|</span>
@@ -468,7 +525,7 @@ if (params.get('download') === '1') {
   <section class="section summary">
     <div class="section-title">Professional Summary</div>
     <p>
-      Software developer and UI/UX designer based in Victoria Falls, Zimbabwe, starting my professional journey in 2026. Skilled in frontend development with a focus on React, Next.js, and responsive design. Passionate about turning ideas into polished digital products that combine beautiful design with genuinely good user experience. Currently learning backend development with Django and Firebase to become a full-stack developer building products used across Africa.
+      Software developer, UI/UX designer, and digital marketer based in Victoria Falls, Zimbabwe, starting my professional journey in 2026. Skilled in frontend development with a focus on React, Next.js, and responsive design, with additional expertise in SEO, social media strategy, and campaign analytics. Passionate about turning ideas into polished digital products that combine beautiful design, clean code, and marketing strategy to deliver measurable results. Currently learning backend development with Firebase to become a full-stack developer building products used across Africa.
     </p>
   </section>
 
@@ -477,15 +534,17 @@ if (params.get('download') === '1') {
     <div class="section-title">Technical Skills</div>
     <div class="skills-grid">
       <div class="cat">Frontend</div>
-      <div class="list">HTML5, CSS3, JavaScript (ES6+), React, Next.js, Tailwind CSS, GSAP, Framer Motion, Three.js, Responsive Design</div>
+      <div class="list">HTML5, CSS3, JavaScript (ES6+), TypeScript, React, Next.js, Tailwind CSS, GSAP, Framer Motion, Three.js, Responsive Design</div>
       <div class="cat">Backend</div>
-      <div class="list">Node.js, Express.js, Python, Django</div>
+      <div class="list">Node.js, Express.js, Python</div>
       <div class="cat">Database</div>
       <div class="list">MongoDB, Firebase, SQLite</div>
       <div class="cat">Tools</div>
       <div class="list">Git, GitHub, Figma, VS Code, Vercel, Postman</div>
       <div class="cat">Design</div>
       <div class="list">UI/UX Design, Prototyping, User Research, Interaction Design</div>
+      <div class="cat">Digital Marketing</div>
+      <div class="list">SEO &amp; Search Strategy, Social Media Marketing, Campaign Analytics, Brand Strategy, Conversion Optimization</div>
     </div>
   </section>
 
@@ -560,6 +619,10 @@ if (params.get('download') === '1') {
       <div class="desc">Designing intuitive user experiences and modern interfaces.</div>
     </div>
     <div class="exp-item">
+      <div class="role">Digital Marketer</div>
+      <div class="desc">Driving growth through SEO, social media strategy, campaign analytics, and conversion optimization.</div>
+    </div>
+    <div class="exp-item">
       <div class="role">Digital Product Builder</div>
       <div class="desc">Transforming ideas into functional digital products through design and development.</div>
     </div>
@@ -579,7 +642,7 @@ if (params.get('download') === '1') {
       <li>Built Vic Falls TeleVivi &mdash; tourism platform with GSAP animations</li>
       <li>Built VFBA Attendance System &mdash; Next.js gym management app</li>
       <li>Building BoxArena &mdash; African boxing platform</li>
-      <li>Learning backend development with Django &amp; Firebase</li>
+      <li>Learning backend development with Firebase &amp; Python</li>
       <li class="future">
         <strong>Future Goal</strong><br>
         Become a Full Stack Software Developer building products used across Africa.
