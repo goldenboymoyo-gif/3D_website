@@ -10,8 +10,12 @@ export default function HeroScene() {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    const getBgColor = () => {
+      return document.documentElement.classList.contains('light') ? 0xf8f9fa : 0x0a0a0a;
+    };
+
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a0a);
+    scene.background = new THREE.Color(getBgColor());
     const camera = new THREE.PerspectiveCamera(50, mount.clientWidth / mount.clientHeight, 0.1, 100);
     camera.position.z = 9;
 
@@ -107,6 +111,21 @@ export default function HeroScene() {
     };
     window.addEventListener('resize', handleResize);
 
+    // React to theme changes — swap background + particle/wireframe colours
+    const isLight = () => document.documentElement.classList.contains('light');
+    const applyTheme = () => {
+      const light = isLight();
+      scene.background = new THREE.Color(light ? 0xf8f9fa : 0x0a0a0a);
+      innerMat.color.setHex(light ? 0x374151 : 0xffffff);
+      particleMat.color.setHex(light ? 0x6B7280 : 0xffffff);
+      coreMat.opacity = light ? 0.35 : 0.55;
+      innerMat.opacity = light ? 0.25 : 0.18;
+      particleMat.opacity = light ? 0.35 : 0.55;
+    };
+    const observer = new MutationObserver(applyTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    applyTheme(); // set initial state
+
     let time = 0;
 
     const animate = () => {
@@ -134,6 +153,7 @@ export default function HeroScene() {
 
     return () => {
       cancelAnimationFrame(frameId);
+      observer.disconnect();
       if (isTouchDevice) {
         window.removeEventListener('touchmove', handleTouch);
         window.removeEventListener('deviceorientation', handleDeviceOrientation);

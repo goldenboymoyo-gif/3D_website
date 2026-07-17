@@ -16,7 +16,12 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [light, setLight] = useState(false);
+  const [light, setLight] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'light';
+    }
+    return false;
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -26,6 +31,7 @@ export default function Navbar() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', light);
+    localStorage.setItem('theme', light ? 'light' : 'dark');
   }, [light]);
 
   return (
@@ -58,7 +64,7 @@ export default function Navbar() {
           <button
             onClick={() => setLight((v) => !v)}
             className="text-ink/80 hover:text-crimson transition-colors"
-            aria-label="Toggle theme"
+            aria-label={light ? 'Switch to dark mode' : 'Switch to light mode'}
             data-cursor-hover
           >
             {light ? <FiMoon size={16} /> : <FiSun size={16} />}

@@ -2,16 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck } from 'react-icons/fi';
-import emailjs from '@emailjs/browser';
 import Logo from './Logo.jsx';
 import SocialLinks from './SocialLinks.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-const AUTO_REPLY_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID || '';
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 
 export default function Contact() {
   const sectionRef = useRef(null);
@@ -30,18 +26,12 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    if (PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-      emailjs.init(PUBLIC_KEY);
-    }
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (sending || sent) return;
 
-    if (PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-      setError('Email service is not configured yet. Please contact me directly via email.');
+    if (!WEB3FORMS_KEY) {
+      setError('Contact form is being configured. Please email me directly at goldenboymoyo@gmail.com');
       return;
     }
 
@@ -51,34 +41,29 @@ export default function Contact() {
     try {
       const form = formRef.current;
       const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.access_key = WEB3FORMS_KEY;
+      data.subject = `Portfolio Contact: ${data.subject || 'New Message'}`;
+      data.from_name = data.name;
+      data.replyto = data.email;
 
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-        from_name: formData.get('name'),
-        from_email: formData.get('email'),
-        subject: formData.get('subject'),
-        message: formData.get('message'),
-        to_name: 'Bright Moyo',
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
       });
 
-      if (AUTO_REPLY_TEMPLATE_ID) {
-        try {
-          await emailjs.send(SERVICE_ID, AUTO_REPLY_TEMPLATE_ID, {
-            from_name: formData.get('name'),
-            from_email: formData.get('email'),
-            subject: formData.get('subject'),
-            message: formData.get('message'),
-            to_name: formData.get('name'),
-          });
-        } catch {
-          // auto-reply is optional — don't block main flow
-        }
-      }
+      const result = await res.json();
 
-      setSent(true);
-      form.reset();
-      setTimeout(() => setSent(false), 5000);
+      if (result.success) {
+        setSent(true);
+        form.reset();
+        setTimeout(() => setSent(false), 5000);
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
     } catch (err) {
-      console.error('EmailJS error:', err);
+      console.error('Contact form error:', err);
       setError('Failed to send message. Please try again or email me directly.');
     } finally {
       setSending(false);
@@ -136,7 +121,7 @@ export default function Contact() {
           </div>
           <div>
             <label htmlFor="contact-subject" className="block text-xs uppercase tracking-widest text-muted mb-2">Subject</label>
-              <input id="contact-subject" name="subject" required type="text" autoComplete="off" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors" />
+            <input id="contact-subject" name="subject" required type="text" autoComplete="off" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors" />
           </div>
           <div>
             <label htmlFor="contact-message" className="block text-xs uppercase tracking-widest text-muted mb-2">Message</label>
@@ -151,7 +136,7 @@ export default function Contact() {
 
           {sent && (
             <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-4 py-3 rounded">
-              <FiCheck size={14} /> Message sent successfully! Thank you for reaching out.
+              <FiCheck size={14} /> Message sent! Thank you for reaching out — I'll get back to you soon.
             </div>
           )}
 
@@ -161,7 +146,7 @@ export default function Contact() {
             className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-white hover:text-base transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             data-cursor-hover
           >
-            <FiSend size={14} /> {sending ? 'Sending...' : sent ? 'Message Sent ✓' : 'Send Message'}
+            <FiSend size={14} /> {sending ? 'Sending...' : sent ? 'Sent!' : 'Send Message'}
           </button>
         </form>
       </div>
