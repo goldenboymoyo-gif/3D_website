@@ -94,16 +94,16 @@ export default function About() {
             Code, Craft, and a Bit of Zambezi Grit
           </h2>
           <p className="about-reveal text-muted leading-relaxed mb-4">
-            I'm a software developer and UI/UX designer based in Victoria Falls,
-            Zimbabwe, focused on building modern web applications that combine
-            beautiful design with genuinely good user experience. I enjoy
+            I'm a software developer, UI/UX designer, and digital marketer based in Victoria Falls,
+            Zimbabwe. I build modern web applications that combine clean engineering with considered
+            design — and make sure they actually perform through smart marketing strategy. I enjoy
             turning ideas into polished digital products — and I'm always
             mid-way through learning the next thing.
           </p>
           <p className="about-reveal text-muted leading-relaxed">
-            My work spans product design, frontend engineering, and increasingly
-            backend systems — usually all three on the same project, since I like
-            owning an idea from sketch to shipped feature.
+            My work spans product design, frontend engineering, backend systems, and digital marketing
+            — often all four on the same project, since I like owning an idea from sketch to shipped
+            feature to measurable results.
           </p>
 
           <div className="about-reveal mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">

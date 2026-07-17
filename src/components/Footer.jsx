@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="flex items-center gap-3">
           <Logo size={32} className="text-ink" />
-          <span className="text-xs text-muted hidden sm:inline">Bright Moyo — Software Developer</span>
+          <span className="text-xs text-muted hidden sm:inline">Bright Moyo — Software Developer &amp; Digital Marketer</span>
         </div>
 
         <SocialLinks size="sm" variant="ghost" />

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiCode, FiLayout, FiFeather, FiBox, FiBookOpen } from 'react-icons/fi';
+import { FiCode, FiLayout, FiFeather, FiBox, FiBookOpen, FiTrendingUp } from 'react-icons/fi';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +20,11 @@ const ROLES = [
     title: 'UI/UX Designer',
     desc: 'Designing intuitive user experiences and modern interfaces.',
     icon: FiFeather,
+  },
+  {
+    title: 'Digital Marketer',
+    desc: 'Driving growth through SEO, social media strategy, campaign analytics, and conversion optimization.',
+    icon: FiTrendingUp,
   },
   {
     title: 'Digital Product Builder',

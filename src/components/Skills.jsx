@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  FiCode, FiGitBranch, FiFigma, FiDatabase, FiServer, FiTerminal,
+  FiCode, FiGitBranch, FiFigma, FiDatabase, FiServer, FiTerminal, FiTrendingUp,
 } from 'react-icons/fi';
 import { SiReact, SiTailwindcss, SiJavascript, SiPython, SiDjango, SiFirebase, SiSqlite, SiVercel, SiHtml5, SiCss } from 'react-icons/si';
 
@@ -46,6 +46,17 @@ const CATEGORIES = [
       { name: 'Figma', icon: FiFigma },
       { name: 'VS Code', icon: FiTerminal },
       { name: 'Vercel', icon: SiVercel },
+    ],
+  },
+  {
+    name: 'Digital Marketing',
+    icon: FiTrendingUp,
+    skills: [
+      { name: 'SEO', icon: FiTrendingUp },
+      { name: 'Analytics', icon: FiTrendingUp },
+      { name: 'Campaign Strategy', icon: FiTrendingUp },
+      { name: 'Brand Growth', icon: FiTrendingUp },
+      { name: 'Conversion', icon: FiTrendingUp },
     ],
   },
 ];

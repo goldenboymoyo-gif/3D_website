@@ -45,12 +45,11 @@ export default function Hero() {
 
         <h1 className="font-display font-semibold text-ink leading-[0.98] text-[clamp(2rem,5vw,4rem)]">
           <span className="hero-line block overflow-hidden"><span className="inline-block">Hi, I'm Bright Moyo</span></span>
-          <span className="hero-line block overflow-hidden"><span className="inline-block text-crimson">Software Developer</span></span>
+          <span className="hero-line block overflow-hidden"><span className="inline-block text-crimson">Software Developer &amp; Digital Marketer</span></span>
         </h1>
 
         <p className="hero-sub mt-6 text-muted text-base md:text-lg max-w-lg leading-relaxed">
-          I craft modern digital experiences — combining clean engineering with
-          considered design, from first sketch to shipped product.
+          I craft digital experiences that perform — combining clean code, thoughtful design, and marketing strategy from first sketch to shipped product.
         </p>
 
         <div className="mt-9 flex flex-wrap gap-4">
@@ -82,7 +81,7 @@ export default function Hero() {
             <Logo size={36} className="text-ink" />
             <div>
               <div className="font-display text-sm text-ink tracking-wide">Bright Moyo</div>
-              <div className="text-[9px] uppercase tracking-[0.2em] text-muted">Software Developer</div>
+              <div className="text-[9px] uppercase tracking-[0.2em] text-muted">Dev + Marketing</div>
             </div>
           </div>
 

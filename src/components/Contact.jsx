@@ -79,7 +79,7 @@ export default function Contact() {
             <Logo size={56} className="text-ink shrink-0" />
             <div>
               <div className="text-ink font-display">Bright Moyo</div>
-              <div className="text-xs text-muted uppercase tracking-widest">Software Developer</div>
+              <div className="text-xs text-muted uppercase tracking-widest">Software Developer &amp; Digital Marketer</div>
             </div>
           </div>
 
