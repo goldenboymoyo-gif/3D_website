@@ -105,7 +105,8 @@ html.light .glass {
 }
 
 html.light .bg-hero-gradient {
-  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.07), transparent),
+  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.1), transparent),
+                    radial-gradient(ellipse 40% 40% at 80% 70%, rgba(220,38,38,0.04), transparent),
                     linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 60%, #F8F9FA 100%);
 }
 
@@ -170,12 +171,14 @@ html.light #home .text-muted { color: #6B7280 !important; }
 
 /* Light mode: glass cards in hero */
 html.light .hero-right-card .glass {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border-color: rgba(0,0,0,0.08) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06) !important;
 }
 html.light .hero-right-card .text-ink { color: #111827 !important; }
 html.light .hero-right-card .text-muted { color: #6B7280 !important; }
 html.light .hero-right-card .border-white\/10 { border-color: rgba(0,0,0,0.08) !important; }
+html.light .hero-right-card .bg-white\/5 { background-color: rgba(0,0,0,0.04) !important; }
 
 /* Light mode: navbar */
 html.light nav { background: rgba(248,249,250,0.9) !important; backdrop-filter: blur(12px) !important; }

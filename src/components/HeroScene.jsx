@@ -111,11 +111,20 @@ export default function HeroScene() {
     const applyTheme = () => {
       const light = isLight();
       scene.background = new THREE.Color(light ? 0xf8f9fa : 0x0a0a0a);
-      innerMat.color.setHex(light ? 0x374151 : 0xffffff);
-      particleMat.color.setHex(light ? 0x6B7280 : 0xffffff);
-      coreMat.opacity = light ? 0.3 : 0.55;
-      innerMat.opacity = light ? 0.2 : 0.18;
-      particleMat.opacity = light ? 0.3 : 0.55;
+      // Core wireframe: crimson in both modes, higher opacity in light
+      coreMat.color.setHex(0xdc2626);
+      coreMat.opacity = light ? 0.5 : 0.55;
+      // Inner wireframe: dark in light mode, white in dark
+      innerMat.color.setHex(light ? 0x111827 : 0xffffff);
+      innerMat.opacity = light ? 0.25 : 0.18;
+      // Particles: crimson in light mode for pop, white in dark
+      particleMat.color.setHex(light ? 0xdc2626 : 0xffffff);
+      particleMat.opacity = light ? 0.4 : 0.55;
+      particleMat.size = light ? 0.045 : 0.035;
+      // Accent dots: always crimson, stronger in light
+      accentMat.color.setHex(0xdc2626);
+      accentMat.opacity = light ? 1.0 : 0.9;
+      accentMat.size = light ? 0.11 : 0.09;
     };
     const observer = new MutationObserver(applyTheme);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });

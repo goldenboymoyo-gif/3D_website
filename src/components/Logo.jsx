@@ -21,8 +21,8 @@ export default function Logo({ size = 48, className = '' }) {
       <path
         d="M34 4 L66 4 L96 34 L96 66 L66 96 L34 96 L4 66 L4 34 Z"
         stroke="currentColor"
-        strokeWidth="1"
-        opacity="0.18"
+        strokeWidth="1.5"
+        opacity="0.35"
       />
 
       {/* ── B ── */}

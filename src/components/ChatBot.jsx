@@ -153,7 +153,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ delay: 2, duration: 0.5 }}
-            className="chat-prompt fixed bottom-[5.5rem] right-6 z-[600] px-4 py-2.5 rounded-xl text-sm font-medium shadow-lg pointer-events-none"
+            className="chat-prompt fixed bottom-24 right-20 z-[600] px-4 py-2.5 rounded-xl text-sm font-medium shadow-lg pointer-events-none"
           >
             <span className="text-ink">Ask me for help!</span>
             <span className="ml-1.5 text-crimson">→</span>

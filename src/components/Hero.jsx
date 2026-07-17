@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import HeroScene from './HeroScene.jsx';
-import { FiArrowDown } from 'react-icons/fi';
 import SocialLinks from './SocialLinks.jsx';
 import Logo from './Logo.jsx';
 
@@ -20,8 +19,7 @@ export default function Hero() {
         .from('.hero-line span', { yPercent: 110, duration: 1, stagger: 0.1 }, '-=0.3')
         .from('.hero-sub', { y: 16, opacity: 0, duration: 0.7 }, '-=0.4')
         .from('.hero-cta', { y: 16, opacity: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
-        .from('.hero-right-card', { y: 20, opacity: 0, duration: 0.9 }, '-=0.5')
-        .from('.hero-scroll-cue', { opacity: 0, duration: 0.6 }, '-=0.3');
+        .from('.hero-right-card', { y: 20, opacity: 0, duration: 0.9 }, '-=0.5');
     }, rootRef);
     return () => ctx.revert();
   }, []);
@@ -61,7 +59,7 @@ export default function Hero() {
             View Projects
           </a>
           <a
-            href="/resume.html?download=1"
+            href="/resume.html"
             className="hero-cta border border-white/20 text-ink px-8 py-4 text-xs uppercase tracking-[0.12em] font-medium hover:border-crimson hover:text-crimson transition-colors duration-300"
             data-cursor-hover
           >
@@ -117,11 +115,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="hero-scroll-cue absolute bottom-10 right-8 md:right-12 z-10 flex flex-col items-center gap-3 text-muted">
-        <span className="text-[10px] tracking-[0.25em] uppercase [writing-mode:vertical-rl]">Scroll</span>
-        <FiArrowDown className="animate-bounce" size={14} />
       </div>
     </section>
   );

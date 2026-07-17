@@ -15,8 +15,8 @@
     --surface: #111827;
     --crimson: #DC2626;
     --ink: #FFFFFF;
-    --muted: #9CA3AF;
-    --border: rgba(255,255,255,0.1);
+    --muted: #D1D5DB;
+    --border: rgba(255,255,255,0.15);
   }
 
   html.light-resume {
@@ -110,7 +110,7 @@
     transition: color 0.2s;
   }
   .contact-row a:hover { color: var(--crimson); }
-  .contact-row .sep { color: rgba(255,255,255,0.2); }
+  .contact-row .sep { color: rgba(255,255,255,0.3); }
 
   /* Section */
   .section { margin-bottom: 20px; }
@@ -153,7 +153,7 @@
   .project-item {
     margin-bottom: 14px;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   .project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .project-header {
@@ -501,12 +501,6 @@ function downloadPDF() {
     if (wasDark) html.classList.remove('light-resume');
     btn.textContent = 'Download PDF';
     btn.disabled = false;
-  });
-}
-var params = new URLSearchParams(window.location.search);
-if (params.get('download') === '1') {
-  window.addEventListener('load', function() {
-    setTimeout(downloadPDF, 600);
   });
 }
 </script>
