@@ -42,14 +42,20 @@
 </head>
 <body>
   <script>
-    // Apply theme immediately to prevent flash of wrong theme
+    // Force dark mode as default. Only add 'light' class if user explicitly chose it.
     (function() {
       try {
         var theme = localStorage.getItem('bm-theme');
         if (theme === 'light') {
           document.documentElement.classList.add('light');
+        } else {
+          // Ensure dark mode by removing light class and setting default
+          document.documentElement.classList.remove('light');
+          localStorage.setItem('bm-theme', 'dark');
         }
-      } catch(e) {}
+      } catch(e) {
+        document.documentElement.classList.remove('light');
+      }
     })();
   </script>
   <div id="root"></div>

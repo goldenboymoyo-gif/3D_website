@@ -147,7 +147,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={sending}
-            className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-crimson/80 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:opacity-80 transition-opacity duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             data-cursor-hover
           >
             <FiSend size={14} /> {sending ? 'Sending...' : sent ? 'Sent!' : 'Send Message'}
