@@ -2,48 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Dark theme (default) ─── */
-:root {
-  --color-base: #0A0A0A;
-  --color-surface: #111827;
-  --color-ink: #FFFFFF;
-  --color-muted: #9CA3AF;
-  --hero-bg: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.16), transparent),
-             linear-gradient(180deg, #0A0A0A 0%, #111827 60%, #0A0A0A 100%);
-  --glass-bg: rgba(17, 24, 39, 0.55);
-  --glass-border: rgba(255,255,255,0.08);
-  color-scheme: dark;
-}
-
-/* ─── Light theme ─── */
-html.light {
-  --color-base: #F8F9FA;
-  --color-surface: #FFFFFF;
-  --color-ink: #111827;
-  --color-muted: #6B7280;
-  --hero-bg: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.08), transparent),
-             linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 60%, #F8F9FA 100%);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0,0,0,0.08);
-  color-scheme: light;
-}
-
 * {
   box-sizing: border-box;
 }
 
 html {
-  scrollbar-color: #DC2626 var(--color-base);
+  scrollbar-color: #DC2626 #0A0A0A;
 }
 
 body {
   margin: 0;
-  background-color: var(--color-base);
-  color: var(--color-ink);
+  background-color: #0A0A0A;
+  color: #FFFFFF;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   cursor: none;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 body.touch-device {
@@ -106,46 +80,72 @@ body.touch-device a, body.touch-device button {
 
 /* Glass utility */
 .glass {
-  background: var(--glass-bg);
+  background: rgba(17, 24, 39, 0.55);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* Light mode overrides for borders and backgrounds */
-html.light .border-white\/10 { border-color: rgba(0,0,0,0.1); }
-html.light .border-white\/15 { border-color: rgba(0,0,0,0.15); }
-html.light .border-white\/5 { border-color: rgba(0,0,0,0.05); }
-html.light .bg-white\/5 { background-color: rgba(0,0,0,0.04); }
-html.light .bg-black\/30 { background-color: rgba(0,0,0,0.08); }
-html.light .bg-white\/20 { background-color: rgba(0,0,0,0.1); }
-html.light .bg-white\/10 { background-color: rgba(0,0,0,0.05); }
-html.light .bg-white\/15 { background-color: rgba(0,0,0,0.08); }
-html.light .text-ink\/80 { color: rgba(17,24,39,0.8); }
-html.light .text-ink\/90 { color: rgba(17,24,39,0.9); }
-html.light .text-ink\/70 { color: rgba(17,24,39,0.7); }
-html.light .text-muted\/40 { color: rgba(107,114,128,0.4); }
-html.light .text-muted\/70 { color: rgba(107,114,128,0.7); }
-html.light .text-white\/15 { color: rgba(0,0,0,0.15); }
-html.light .text-white\/20 { color: rgba(0,0,0,0.2); }
-html.light .text-white\/10 { color: rgba(0,0,0,0.1); }
-html.light .border-crimson\/30 { border-color: rgba(220,38,38,0.3); }
-html.light .border-crimson\/40 { border-color: rgba(220,38,38,0.4); }
-html.light .bg-crimson\/5 { background-color: rgba(220,38,38,0.05); }
-html.light .bg-crimson\/90 { background-color: rgba(220,38,38,0.9); }
+/* ─── Light theme overrides ─── */
+html.light body,
+html.light {
+  background-color: #F8F9FA;
+  color: #111827;
+}
+
+html.light section,
+html.light .bg-surface\/30,
+html.light .bg-surface\/40 {
+  background-color: transparent;
+}
+
+html.light .glass {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(0,0,0,0.08);
+}
+
+html.light .bg-hero-gradient {
+  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.07), transparent),
+                    linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 60%, #F8F9FA 100%);
+}
+
+/* Light mode: invert white-based utilities to dark-based */
+html.light .bg-white\/5 { background-color: rgba(0,0,0,0.04) !important; }
+html.light .bg-white\/10 { background-color: rgba(0,0,0,0.05) !important; }
+html.light .bg-white\/15 { background-color: rgba(0,0,0,0.07) !important; }
+html.light .bg-white\/20 { background-color: rgba(0,0,0,0.08) !important; }
+html.light .bg-black\/30 { background-color: rgba(0,0,0,0.06) !important; }
+
+html.light .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+html.light .border-white\/15 { border-color: rgba(0,0,0,0.15) !important; }
+html.light .border-white\/5 { border-color: rgba(0,0,0,0.06) !important; }
+html.light .border-white\/20 { border-color: rgba(0,0,0,0.2) !important; }
+
+html.light .text-white\/10 { color: rgba(0,0,0,0.1) !important; }
+html.light .text-white\/15 { color: rgba(0,0,0,0.15) !important; }
+html.light .text-white\/20 { color: rgba(0,0,0,0.2) !important; }
+html.light .text-ink\/80 { color: rgba(17,24,39,0.8) !important; }
+html.light .text-ink\/90 { color: rgba(17,24,39,0.9) !important; }
+html.light .text-ink\/70 { color: rgba(17,24,39,0.7) !important; }
+html.light .text-muted\/40 { color: rgba(107,114,128,0.4) !important; }
+html.light .text-muted\/70 { color: rgba(107,114,128,0.7) !important; }
+
 html.light .from-base\/10 { --tw-gradient-from: rgba(248,249,250,0.1); }
 html.light .from-base\/70 { --tw-gradient-from: rgba(248,249,250,0.7); }
 html.light .to-base { --tw-gradient-to: #F8F9FA; }
 
-/* Light mode hover overrides */
-html.light a:hover, html.light button:hover {
-  cursor: none;
+html.light .bg-crimson\/5 { background-color: rgba(220,38,38,0.06) !important; }
+html.light .bg-crimson\/90 { background-color: rgba(220,38,38,0.9) !important; }
+html.light .border-crimson\/30 { border-color: rgba(220,38,38,0.3) !important; }
+html.light .border-crimson\/40 { border-color: rgba(220,38,38,0.4) !important; }
+html.light .border-crimson\/60 { border-color: rgba(220,38,38,0.6) !important; }
+
+/* Light mode: journey dots */
+html.light .journey-dot-empty {
+  background-color: #F8F9FA !important;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Light mode hero scene override — handled via MutationObserver in HeroScene */
 
 .portrait {
   width: 420px;

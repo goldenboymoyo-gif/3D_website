@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
 import Logo from './Logo.jsx';
 import SocialLinks from './SocialLinks.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
+const FORMSUBMIT_EMAIL = 'goldenboymoyo@gmail.com';
 
 export default function Contact() {
   const sectionRef = useRef(null);
@@ -30,11 +30,6 @@ export default function Contact() {
     e.preventDefault();
     if (sending || sent) return;
 
-    if (!WEB3FORMS_KEY) {
-      setError('Contact form is being configured. Please email me directly at goldenboymoyo@gmail.com');
-      return;
-    }
-
     setSending(true);
     setError('');
 
@@ -42,29 +37,29 @@ export default function Contact() {
       const form = formRef.current;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      data.access_key = WEB3FORMS_KEY;
-      data.subject = `Portfolio Contact: ${data.subject || 'New Message'}`;
-      data.from_name = data.name;
-      data.replyto = data.email;
+      data.subject = `[Portfolio] ${data.subject || 'New Message'}`;
 
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
         body: JSON.stringify(data),
       });
 
       const result = await res.json();
 
-      if (result.success) {
+      if (res.ok && result.success !== false) {
         setSent(true);
         form.reset();
-        setTimeout(() => setSent(false), 5000);
+        setTimeout(() => setSent(false), 6000);
       } else {
         throw new Error(result.message || 'Submission failed');
       }
     } catch (err) {
-      console.error('Contact form error:', err);
-      setError('Failed to send message. Please try again or email me directly.');
+      console.error('FormSubmit error:', err);
+      setError('Something went wrong. Please try again or email me directly at goldenboymoyo@gmail.com');
     } finally {
       setSending(false);
     }
@@ -108,7 +103,19 @@ export default function Contact() {
           </div>
         </div>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="contact-reveal glass border border-white/10 p-8 space-y-5" aria-label="Contact form">
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          action={`https://formsubmit.co/${FORMSUBMIT_EMAIL}`}
+          method="POST"
+          className="contact-reveal glass border border-white/10 p-8 space-y-5"
+          aria-label="Contact form"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="[Portfolio] New Message" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="" />
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="contact-name" className="block text-xs uppercase tracking-widest text-muted mb-2">Name</label>
@@ -129,14 +136,15 @@ export default function Contact() {
           </div>
 
           {error && (
-            <div className="text-xs text-red-400 bg-red-400/10 border border-red-400/20 px-4 py-3 rounded">
-              {error}
+            <div className="flex items-start gap-2 text-xs text-red-400 bg-red-400/10 border border-red-400/20 px-4 py-3 rounded">
+              <FiAlertCircle size={14} className="mt-0.5 shrink-0" />
+              <span>{error}</span>
             </div>
           )}
 
           {sent && (
             <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-4 py-3 rounded">
-              <FiCheck size={14} /> Message sent! Thank you for reaching out — I'll get back to you soon.
+              <FiCheck size={14} /> Message sent successfully! Thank you for reaching out — I'll reply soon.
             </div>
           )}
 

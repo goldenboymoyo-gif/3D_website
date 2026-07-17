@@ -17,10 +17,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [light, setLight] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'light';
-    }
-    return false;
+    try { return localStorage.getItem('bm-theme') === 'light'; }
+    catch { return false; }
   });
 
   useEffect(() => {
@@ -30,8 +28,13 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.classList.toggle('light', light);
-    localStorage.setItem('theme', light ? 'light' : 'dark');
+    const root = document.documentElement;
+    if (light) {
+      root.classList.add('light');
+    } else {
+      root.classList.remove('light');
+    }
+    try { localStorage.setItem('bm-theme', light ? 'light' : 'dark'); } catch {}
   }, [light]);
 
   return (

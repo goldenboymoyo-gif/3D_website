@@ -1,79 +1,61 @@
 /**
  * BM Monogram Logo — unique geometric mark for Bright Moyo.
  *
- * The "B" is constructed from a vertical spine with two balanced bowls
- * and a crimson accent bar. The "M" has angular peaks inspired by the
- * Victoria Falls escarpment. A small diamond apex ties the composition
- * together. The octagonal frames echo a camera aperture / technical precision.
+ * A clean, minimal monogram: "B" with two balanced bowls and a crimson
+ * accent bar, paired with an angular "M" whose peaks reference the
+ * Victoria Falls escarpment. Thin octagonal frame adds technical precision.
  */
 export default function Logo({ size = 48, className = '' }) {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 80 80"
+      viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-label="Bright Moyo logo"
       role="img"
     >
-      {/* Outer octagonal frame — thin, subtle */}
+      {/* Octagonal frame */}
       <path
-        d="M28 3 L52 3 L77 28 L77 52 L52 77 L28 77 L3 52 L3 28 Z"
+        d="M34 4 L66 4 L96 34 L96 66 L66 96 L34 96 L4 66 L4 34 Z"
         stroke="currentColor"
-        strokeWidth="1.2"
-        opacity="0.15"
-        fill="none"
+        strokeWidth="1"
+        opacity="0.18"
       />
 
-      {/* B — vertical spine */}
-      <rect x="19" y="22" width="3" height="36" rx="1.5" fill="currentColor" />
-
-      {/* B — top bowl */}
+      {/* ── B ── */}
+      {/* Spine */}
+      <rect x="22" y="28" width="3.5" height="44" rx="1.75" fill="currentColor" />
+      {/* Top bowl */}
       <path
-        d="M19 22 H33 C38 22 40 25.5 40 29 C40 32.5 38 36 33 36 H19"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M22 28 H40 C47 28 50 32 50 36.5 C50 41 47 45 40 45 H22"
+        fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"
       />
-
-      {/* B — bottom bowl */}
+      {/* Bottom bowl */}
       <path
-        d="M19 40 H35 C41 40 44 44 44 48.5 C44 53 41 58 35 58 H19"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M22 50 H42 C50 50 54 55 54 61 C54 67 50 72 42 72 H22"
+        fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"
       />
+      {/* Crimson accent bar */}
+      <rect x="22" y="46.5" width="32" height="3" rx="1.5" fill="#DC2626" />
 
-      {/* Crimson accent bar — horizontal separator */}
-      <rect x="19" y="37" width="25" height="2.2" rx="1" fill="#DC2626" />
-
-      {/* M — left leg */}
-      <line x1="50" y1="58" x2="50" y2="34" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
-
-      {/* M — right leg */}
-      <line x1="66" y1="58" x2="66" y2="34" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
-
-      {/* M — V peak */}
+      {/* ── M ── */}
+      {/* Left leg */}
+      <line x1="60" y1="72" x2="60" y2="42" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+      {/* Right leg */}
+      <line x1="78" y1="72" x2="78" y2="42" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+      {/* Peak */}
       <polyline
-        points="50,34 58,24 66,34"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        points="60,42 69,30 78,42"
+        fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"
       />
+      {/* Crimson center stroke */}
+      <line x1="69" y1="50" x2="69" y2="42" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" opacity="0.65" />
 
-      {/* M — crimson accent stroke */}
-      <line x1="58" y1="40" x2="58" y2="34" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" opacity="0.7" />
-
-      {/* Diamond apex — ties the mark together */}
-      <polygon points="40,8 42.5,11.5 40,15 37.5,11.5" fill="#DC2626" opacity="0.55" />
+      {/* Diamond accent at top center */}
+      <polygon points="50,10 53,14 50,18 47,14" fill="#DC2626" opacity="0.5" />
     </svg>
   );
 }
