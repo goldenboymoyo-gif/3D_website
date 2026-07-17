@@ -7,6 +7,7 @@ import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Skills from './components/Skills.jsx';
 import Footer from './components/Footer.jsx';
+import ChatBot from './components/ChatBot.jsx';
 import useLenis from './hooks/useLenis.js';
 
 const Projects = lazy(() => import('./components/Projects.jsx'));
@@ -36,6 +37,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <ChatBot />
     </>
   );
 }

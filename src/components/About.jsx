@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SiReact, SiJavascript, SiTailwindcss, SiFirebase, SiNodedotjs, SiFigma } from 'react-icons/si';
 import Logo from './Logo.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,6 +11,15 @@ const STATS = [
   { label: 'Technologies Learned', value: 22, suffix: '+' },
   { label: 'Started', value: 2026, suffix: '', isYear: true },
   { label: 'Personal & Client Projects', value: 9, suffix: '' },
+];
+
+const FLOATING_ICONS = [
+  { Icon: SiReact, x: -60, y: -40, delay: 0, size: 22 },
+  { Icon: SiJavascript, x: 80, y: -30, delay: 0.3, size: 18 },
+  { Icon: SiTailwindcss, x: -70, y: 50, delay: 0.6, size: 20 },
+  { Icon: SiFirebase, x: 85, y: 45, delay: 0.9, size: 16 },
+  { Icon: SiNodedotjs, x: -40, y: 90, delay: 1.2, size: 18 },
+  { Icon: SiFigma, x: 60, y: 85, delay: 1.5, size: 17 },
 ];
 
 function Counter({ value, suffix }) {
@@ -45,6 +55,7 @@ function Counter({ value, suffix }) {
 
 export default function About() {
   const sectionRef = useRef(null);
+  const logoAreaRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,6 +72,14 @@ export default function About() {
         duration: 1.2,
         ease: 'power4.inOut',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
+      });
+      gsap.from('.floating-icon', {
+        scale: 0,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.12,
+        ease: 'back.out(1.7)',
+        scrollTrigger: { trigger: logoAreaRef.current, start: 'top 75%' },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -103,10 +122,52 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about-reveal">
-          <div className="relative aspect-[4/5] max-w-sm ml-auto overflow-hidden border border-white/10 about-logo-reveal flex items-center justify-center bg-surface/60">
-            <Logo size={160} className="text-ink/80" />
-            <div className="absolute inset-0 bg-gradient-to-t from-base/70 to-transparent" />
+        <div className="about-reveal" ref={logoAreaRef}>
+          {/* Logo showcase card with floating icons */}
+          <div className="relative aspect-[4/5] max-w-sm ml-auto about-logo-reveal">
+            {/* Background card */}
+            <div className="absolute inset-0 glass border border-white/10 overflow-hidden">
+              {/* Grid pattern */}
+              <div className="absolute inset-0 opacity-[0.04]"
+                style={{
+                  backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }}
+              />
+              {/* Crimson gradient accent */}
+              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-crimson/5 to-transparent" />
+            </div>
+
+            {/* Rotating ring */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-52 h-52 rounded-full border border-crimson/20 animate-[spin_20s_linear_infinite]" />
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-44 h-44 rounded-full border border-white/10 animate-[spin_30s_linear_infinite_reverse]" />
+            </div>
+
+            {/* Central logo */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative">
+                <Logo size={120} className="text-ink relative z-10" />
+                {/* Glow behind logo */}
+                <div className="absolute inset-0 blur-3xl bg-crimson/15 rounded-full scale-150" />
+              </div>
+            </div>
+
+            {/* Floating tech icons */}
+            {FLOATING_ICONS.map(({ Icon, x, y, delay, size }, i) => (
+              <div
+                key={i}
+                className="floating-icon absolute top-1/2 left-1/2 text-muted/40 hover:text-crimson transition-colors duration-300"
+                style={{ transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }}
+              >
+                <Icon size={size} />
+              </div>
+            ))}
+
+            {/* Bottom gradient fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface/80 to-transparent" />
           </div>
 
           <div className="grid grid-cols-2 gap-8 mt-10 max-w-sm ml-auto">
