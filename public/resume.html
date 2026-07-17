@@ -404,84 +404,110 @@ function downloadPDF() {
   var btn = document.getElementById('downloadPdfBtn');
   btn.textContent = 'Generating...';
   btn.disabled = true;
+
+  // Force light mode so CSS variables resolve to dark text
+  var html = document.documentElement;
+  var wasDark = !html.classList.contains('light-resume');
+  if (wasDark) html.classList.add('light-resume');
+
   var element = document.querySelector('.resume');
   var opt = {
     margin:        [0.5, 0.5, 0.5, 0.5],
     filename:      'Bright_Moyo_Resume.pdf',
     image:         { type: 'jpeg', quality: 0.95 },
     html2canvas:   {
-      scale: 1.5,
+      scale: 2,
       backgroundColor: '#ffffff',
       useCORS: true,
-      media: false,
+      logging: false,
       onclone: function(doc) {
         var resume = doc.querySelector('.resume');
         if (!resume) return;
+        // Force light-resume on cloned doc so variables resolve correctly
+        doc.documentElement.classList.add('light-resume');
+        // Clean up for print
         resume.style.background = '#ffffff';
-        resume.style.color = '#111111';
         resume.style.padding = '0';
-        var all = resume.querySelectorAll('*');
-        for (var i = 0; i < all.length; i++) {
-          var el = all[i];
+        resume.style.maxWidth = '100%';
+        // Hide no-print elements
+        var noPrint = doc.querySelector('.no-print');
+        if (noPrint) noPrint.style.display = 'none';
+        // Ensure all borders are visible
+        var allEls = resume.querySelectorAll('*');
+        for (var i = 0; i < allEls.length; i++) {
+          var el = allEls[i];
           var s = el.style;
-          if (getComputedStyle) {
-            var cs = getComputedStyle(el);
-            if (cs.color === 'rgb(255, 255, 255)' || cs.color === 'rgba(255, 255, 255, 1)') s.color = '#111111';
-            if (cs.color === 'rgb(156, 163, 175)' || cs.color === 'rgb(156, 163, 175)') s.color = '#555555';
-            if (cs.backgroundColor === 'rgba(0, 0, 0, 0)' || cs.backgroundColor === 'transparent') continue;
-            if (cs.backgroundColor.includes('10, 10, 10') || cs.backgroundColor.includes('17, 24, 39')) s.backgroundColor = '#ffffff';
+          // Force dark text on anything that might be white
+          var cs = getComputedStyle(el);
+          if (cs.color === 'rgb(255, 255, 255)' || cs.color === 'rgba(255, 255, 255, 1)') {
+            s.color = '#111111';
           }
-          if (cs.color && cs.color.includes('220, 38, 38')) s.color = '#111111';
         }
+        // Section titles keep crimson
         var sectionTitles = resume.querySelectorAll('.section-title');
         for (var j = 0; j < sectionTitles.length; j++) {
-          sectionTitles[j].style.color = '#111111';
-          sectionTitles[j].style.borderColor = '#cccccc';
+          sectionTitles[j].style.color = '#DC2626';
+          sectionTitles[j].style.borderColor = '#DC2626';
         }
+        // Header crimson line
         var header = resume.querySelector('.header');
-        if (header) {
-          header.style.borderBottomColor = '#111111';
-          header.style.color = '#111111';
-        }
+        if (header) header.style.borderBottomColor = '#DC2626';
+        // Title stays crimson
         var title = resume.querySelector('.title');
-        if (title) title.style.color = '#333333';
+        if (title) title.style.color = '#DC2626';
+        // Stat numbers stay crimson
         var nums = resume.querySelectorAll('.num');
-        for (var k = 0; k < nums.length; k++) nums[k].style.color = '#111111';
+        for (var k = 0; k < nums.length; k++) nums[k].style.color = '#DC2626';
+        // Links dark
         var links = resume.querySelectorAll('a');
         for (var l = 0; l < links.length; l++) links[l].style.color = '#111111';
+        // Tech tags
         var techs = resume.querySelectorAll('.project-tech span');
         for (var m = 0; m < techs.length; m++) {
           techs[m].style.borderColor = '#cccccc';
           techs[m].style.color = '#555555';
         }
-        var borders = resume.querySelectorAll('.stat-box, .project-item');
-        for (var n = 0; n < borders.length; n++) {
-          var bc = borders[n].style;
-          bc.borderColor = '#cccccc';
+        // Project item borders
+        var projects = resume.querySelectorAll('.project-item');
+        for (var n = 0; n < projects.length; n++) {
+          projects[n].style.borderBottomColor = '#eeeeee';
         }
+        // Stat box borders
+        var statBoxes = resume.querySelectorAll('.stat-box');
+        for (var o = 0; o < statBoxes.length; o++) {
+          statBoxes[o].style.borderColor = '#cccccc';
+        }
+        // Future box
         var future = resume.querySelector('.future');
         if (future) {
-          future.style.borderColor = '#cccccc';
-          future.style.background = '#f5f5f5';
+          future.style.borderColor = '#DC2626';
+          future.style.background = 'rgba(220,38,38,0.05)';
         }
         var futureStrong = resume.querySelectorAll('.future strong');
-        for (var p = 0; p < futureStrong.length; p++) futureStrong[p].style.color = '#111111';
+        for (var p = 0; p < futureStrong.length; p++) futureStrong[p].style.color = '#DC2626';
+        // Separators
         var seps = resume.querySelectorAll('.sep');
         for (var q = 0; q < seps.length; q++) seps[q].style.color = '#cccccc';
+        // Journey list items
         var lis = resume.querySelectorAll('.journey-list li');
         for (var r = 0; r < lis.length; r++) {
           lis[r].style.color = '#555555';
         }
-        var circles = resume.querySelectorAll('.journey-list li');
-        for (var t = 0; t < circles.length; t++) {
-          circles[t].style.setProperty('--before-border', '#111111');
-        }
+        // Contact row
+        var contactRow = resume.querySelector('.contact-row');
+        if (contactRow) contactRow.style.color = '#666666';
       }
     },
     jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
     enableLinks:   true
   };
   html2pdf().set(opt).from(element).save().then(function() {
+    // Restore original theme
+    if (wasDark) html.classList.remove('light-resume');
+    btn.textContent = 'Download PDF';
+    btn.disabled = false;
+  }).catch(function() {
+    if (wasDark) html.classList.remove('light-resume');
     btn.textContent = 'Download PDF';
     btn.disabled = false;
   });
