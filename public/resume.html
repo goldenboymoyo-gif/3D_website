@@ -79,7 +79,7 @@
 
   /* Header */
   .header {
-    border-bottom: 2px solid #111111;
+    border-bottom: 2px solid var(--ink);
     padding-bottom: 20px;
     margin-bottom: 24px;
   }
@@ -92,7 +92,7 @@
   }
   .header .title {
     font-size: 15px;
-    color: #111111;
+    color: var(--crimson);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -111,7 +111,7 @@
     transition: color 0.2s;
   }
   .contact-row a:hover { color: var(--crimson); }
-  .contact-row .sep { color: rgba(255,255,255,0.4); }
+  .contact-row .sep { color: var(--border); }
 
   /* Section */
   .section { margin-bottom: 20px; }
@@ -121,7 +121,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: #111111;
+    color: var(--crimson);
     border-bottom: 1px solid var(--border);
     padding-bottom: 8px;
     margin-bottom: 16px;
@@ -154,7 +154,7 @@
   .project-item {
     margin-bottom: 14px;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid var(--border);
   }
   .project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .project-header {
@@ -172,7 +172,7 @@
   }
   .project-header .cat {
     font-size: 11px;
-    color: #555555;
+    color: var(--crimson);
     text-transform: uppercase;
     letter-spacing: 0.12em;
   }
@@ -196,7 +196,7 @@
   }
   .project-link {
     font-size: 11px;
-    color: #111111;
+    color: var(--crimson);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -237,19 +237,19 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    border: 2px solid #111111;
+    border: 2px solid var(--crimson);
     background: var(--base);
   }
   .journey-list li:last-child { margin-bottom: 0; }
   .journey-list .future {
-    border: 1px solid rgba(0,0,0,0.15);
-    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(220,38,38,0.3);
+    background: rgba(220,38,38,0.05);
     padding: 10px 14px;
     margin-top: 10px;
     border-radius: 4px;
   }
   .journey-list .future::before { display: none; }
-  .journey-list .future strong { color: #111111; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .journey-list .future strong { color: var(--crimson); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
 
   /* Stats */
   .stats {
@@ -267,7 +267,7 @@
     font-family: 'Space Grotesk', sans-serif;
     font-size: 26px;
     font-weight: 700;
-    color: #111111;
+    color: var(--crimson);
   }
   .stat-box .label {
     font-size: 10px;
