@@ -57,19 +57,19 @@
     cursor: pointer;
     transition: background 0.2s;
   }
-  .no-print button:hover { background: #b91c1c; }
+  .no-print button:hover { opacity: 0.85; }
   .no-print .back-btn {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--ink);
   }
-  .no-print .back-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+  .no-print .back-btn:hover { opacity: 0.7; }
   .no-print .theme-btn {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--ink);
   }
-  .no-print .theme-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+  .no-print .theme-btn:hover { opacity: 0.7; }
 
   .resume {
     max-width: 800px;
@@ -390,11 +390,10 @@ function toggleTheme() {
   }
 }
 
-// Restore saved theme
+// Restore saved theme — always default to dark unless user explicitly chose light on THIS page
 (function() {
   var saved = localStorage.getItem('bm-resume-theme');
-  var useLight = saved === 'light' || (!saved && localStorage.getItem('bm-theme') === 'light');
-  if (useLight) {
+  if (saved === 'light') {
     document.documentElement.classList.add('light-resume');
     var sun = document.getElementById('sunIcon');
     var moon = document.getElementById('moonIcon');
