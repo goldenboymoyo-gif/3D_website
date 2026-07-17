@@ -1,10 +1,14 @@
 import televiviImg from '../assets/vicfalls_televivi.png';
 import ironvaleImg from '../assets/ironvale.png';
 import homelinkImg from '../assets/homelink.png';
-import vfbaImg from '../assets/vfba.png';
+import vfbaImg from '../assets/vfba-website.png';
 import softwarePortImg from '../assets/software_port.png';
 import briefwireImg from '../assets/briefwire.png';
 import digitalPortImg from '../assets/digital_port.png';
+import bomaImg from '../assets/booma.png';
+import ignatiusImg from '../assets/ignatius.png';
+import tmpicknpayImg from '../assets/tmpicknpay.png';
+import jumpstartImg from '../assets/Screenshot 2026-07-17 190121.png';
 
 export const PROJECTS = [
   {
@@ -13,7 +17,7 @@ export const PROJECTS = [
     category: 'Experiential Tourism Platform',
     live: 'https://bomaexperiencecozw.vercel.app/',
     github: null,
-    image: null,
+    image: bomaImg,
     description: 'An immersive tourism experience platform for Boma Adventures, showcasing cultural dining, wildlife encounters, and adventure activities with a rich visual narrative.',
     tech: ['React', 'Tailwind CSS', 'Vercel'],
   },
@@ -23,7 +27,7 @@ export const PROJECTS = [
     category: 'Personal Portfolio',
     live: 'https://ignatius-portfolio-eight.vercel.app/',
     github: null,
-    image: null,
+    image: ignatiusImg,
     description: 'A sleek personal portfolio site designed to showcase projects, skills, and professional identity with clean typography and smooth interactions.',
     tech: ['React', 'Tailwind CSS', 'Framer Motion'],
   },
@@ -33,7 +37,7 @@ export const PROJECTS = [
     category: 'E-Commerce Platform',
     live: 'https://tmpicknpay-website.vercel.app/',
     github: null,
-    image: null,
+    image: tmpicknpayImg,
     description: 'A modern e-commerce website featuring product browsing, cart functionality, and a streamlined checkout experience built for performance.',
     tech: ['React', 'Tailwind CSS', 'Vercel'],
   },
@@ -54,7 +58,7 @@ export const PROJECTS = [
     category: 'Web Application',
     live: 'https://jumpstart-vmub.vercel.app/',
     github: null,
-    image: null,
+    image: jumpstartImg,
     description: 'A dynamic web application designed to help users kickstart their projects with an engaging interface and streamlined user flow.',
     tech: ['React', 'Tailwind CSS', 'Vercel'],
   },
