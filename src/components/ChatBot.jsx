@@ -10,19 +10,23 @@ const KB = [
   },
   {
     keywords: ['skill', 'tech', 'stack', 'language', 'know', 'use', 'tool'],
-    answer: "Bright's tech stack includes:\n\n**Frontend:** React, Next.js, JavaScript, TypeScript, HTML, CSS, Tailwind CSS, Three.js, GSAP, Framer Motion\n\n**Backend:** Node.js, Express, Python, Django\n\n**Database:** Firebase, MongoDB, SQLite\n\n**Tools:** Git, GitHub, Figma, VS Code, Vercel\n\n22+ technologies and always learning more!",
+    answer: "Bright's tech stack includes:\n\n**Frontend:** React, Next.js, JavaScript, TypeScript, HTML, CSS, Tailwind CSS, Three.js, GSAP, Framer Motion\n\n**Backend:** Node.js, Express, Python, Django\n\n**Database:** Firebase, MongoDB, SQLite\n\n**Design & Marketing:** Figma, UI/UX Design, Digital Marketing, Brand Strategy\n\n**Tools:** Git, GitHub, VS Code, Vercel\n\n22+ technologies and always learning more!",
   },
   {
     keywords: ['experience', 'role', 'job', 'work', 'do'],
-    answer: "Bright's experience includes:\n\n• **Software Developer** — Building responsive web apps\n• **Frontend Developer** — Scalable React applications\n• **UI/UX Designer** — Intuitive user experiences\n• **Digital Product Builder** — End-to-end product development\n• **Product Design Student** — Learning user research & strategy",
+    answer: "Bright's experience includes:\n\n• **Software Developer** — Building responsive web apps\n• **Frontend Developer** — Scalable React applications\n• **UI/UX Designer** — Intuitive user experiences\n• **Digital Marketer** — Campaign strategy, analytics, and growth\n• **Digital Product Builder** — End-to-end product development\n• **Product Design Student** — Learning user research & strategy",
+  },
+  {
+    keywords: ['digital market', 'marketing', 'seo', 'social media', 'campaign', 'ads', 'analytics', 'growth', 'brand'],
+    answer: "Yes! Bright is also a **Digital Marketer**.\n\nHe brings a unique advantage — he doesn't just build websites, he understands how to make them **perform**. His digital marketing skills include:\n\n• **SEO & Search Strategy** — Optimizing sites to rank and get discovered\n• **Social Media Marketing** — Content strategy and audience growth\n• **Campaign Analytics** — Data-driven decisions to maximize ROI\n• **Brand Strategy** — Building cohesive digital identities\n• **Conversion Optimization** — Turning visitors into customers\n\nThis means when Bright builds your website, it's designed to **convert** — not just look good.",
   },
   {
     keywords: ['contact', 'email', 'phone', 'reach', 'hire', 'available'],
-    answer: "You can reach Bright through:\n\n📧 **Email:** goldenboymoyo@gmail.com\n📱 **Phone:** +263 774 765 928\n📍 **Location:** Victoria Falls, Zimbabwe\n💼 **GitHub:** github.com/goldenboymoyo-gif\n🔗 **LinkedIn:** linkedin.com/in/bright-moyo-8728b83ab\n\nOr use the Contact section on this page!",
+    answer: "You can reach Bright through:\n\n📧 **Email:** goldenboymoyo@gmail.com\n📱 **Phone:** +263 774 765 928\n📍 **Location:** Victoria Falls, Zimbabwe\n💼 **GitHub:** github.com/goldenboymoyo-gif\n🔗 **LinkedIn:** linkedin.com/in/bright-moyo-8728b83ab\n\nOr use the Contact section on this page! He's currently available for new projects.",
   },
   {
     keywords: ['about', 'who', 'name', 'intro', 'tell me'],
-    answer: "Bright Moyo is a software developer and UI/UX designer based in Victoria Falls, Zimbabwe.\n\nHe combines clean engineering with considered design to build modern digital experiences. His work spans product design, frontend engineering, and backend systems — he likes owning ideas from sketch to shipped product.\n\nHe started coding in 2026 and has already completed 14+ projects across multiple technologies.",
+    answer: "Bright Moyo is a **software developer, UI/UX designer, and digital marketer** based in Victoria Falls, Zimbabwe.\n\nHe combines clean engineering with considered design and marketing strategy to build digital products that don't just work — they **perform**. His work spans product design, frontend engineering, backend systems, and digital growth — he likes owning ideas from sketch to shipped product to measurable results.\n\nHe started coding in 2026 and has already completed 14+ projects across multiple technologies.",
   },
   {
     keywords: ['journey', 'timeline', 'history', 'learn', 'start'],
@@ -33,24 +37,47 @@ const KB = [
     answer: "Bright is based in **Victoria Falls, Zimbabwe** — one of the Seven Natural Wonders of the World. He works remotely and is available for projects worldwide.",
   },
   {
-    keywords: ['price', 'cost', 'rate', 'budget', 'charge'],
-    answer: "Pricing depends on the project scope and complexity. Feel free to reach out via email at **goldenboymoyo@gmail.com** or through the Contact section with details about your project, and Bright will get back to you with a quote.",
+    keywords: ['price', 'cost', 'rate', 'budget', 'charge', 'how much'],
+    answer: "Pricing depends on the project scope and complexity. Bright offers competitive rates and is flexible depending on the project.\n\nFeel free to reach out via email at **goldenboymoyo@gmail.com** or through the Contact section with details about your project, and Bright will get back to you with a personalized quote. No obligations!",
+  },
+  {
+    keywords: ['good', 'best', 'recommend', 'quality', 'great', 'excellent', 'capable', 'skilled', 'talented', 'hire', 'should i'],
+    answer: "Absolutely — Bright is **highly skilled** and passionate about what he does. Here's why clients trust him:\n\n✅ **14+ completed projects** across different industries\n✅ **Full-stack capability** — design, development, AND marketing under one roof\n✅ **Clean, modern code** — not just functional, but maintainable\n✅ **User-first mindset** — every project is designed to convert\n✅ **Fast communication** — he usually replies within a day\n✅ **End-to-end ownership** — from concept to deployment to growth\n\nHe's the kind of developer who cares about your project as much as you do. I'd definitely recommend reaching out!",
+  },
+  {
+    keywords: ['trust', 'reliable', 'depend', 'professional', 'deliver', 'deadline', 'on time'],
+    answer: "Bright takes every project seriously. He's built **14+ projects** — from tourism platforms to real estate systems to gym management tools — and each one was delivered with care.\n\nHis approach:\n• Clear communication from day one\n• Regular updates so you're never in the dark\n• Clean, scalable code that stands the test of time\n• Post-launch support to make sure everything runs smoothly\n\nHe's building his reputation one great project at a time, and that means every client matters to him.",
+  },
+  {
+    keywords: ['website', 'app', 'build', 'develop', 'make me', 'create for', 'need a'],
+    answer: "Bright can absolutely help with that! He builds:\n\n🌐 **Websites** — Portfolio, corporate, landing pages, e-commerce\n📱 **Web Applications** — Dashboards, management systems, SaaS tools\n🎨 **UI/UX Design** — Wireframes, prototypes, full design systems\n📈 **Digital Marketing** — SEO, social media strategy, analytics\n\nJust head to the **Contact** section and describe what you need. He'll get back to you with a plan and a quote!",
   },
   {
     keywords: ['thank', 'thanks', 'appreciate'],
     answer: "You're welcome! Feel free to ask anything else about Bright's work, skills, or how to get in touch. Happy to help!",
   },
   {
-    keywords: ['hello', 'hi', 'hey', 'greetings', 'sup'],
-    answer: "Hey there! 👋 I'm the assistant for Bright Moyo's portfolio. I can help you learn about:\n\n• His **projects** and work\n• His **skills** and tech stack\n• His **experience** and journey\n• How to **contact** him\n\nWhat would you like to know?",
+    keywords: ['hello', 'hi', 'hey', 'greetings', 'sup', 'how are you', "what's up"],
+    answer: "Hey there! 👋 I'm the assistant for Bright Moyo's portfolio. I can help you learn about:\n\n• His **projects** and work\n• His **skills** and tech stack\n• His **digital marketing** expertise\n• How to **contact** and **hire** him\n\nWhat would you like to know?",
+  },
+  {
+    keywords: ['timeline', 'how long', 'duration', 'take', 'quick', 'fast'],
+    answer: "Timelines depend on the project, but here's a rough guide:\n\n• **Landing page** — 3 to 5 days\n• **Business website** — 1 to 2 weeks\n• **Web application** — 2 to 6 weeks\n• **E-commerce site** — 2 to 4 weeks\n\nBright works efficiently without cutting corners. He'll give you a clear timeline before starting so there are no surprises.",
   },
 ];
 
 const QUICK_ACTIONS = [
   { label: 'Projects', query: 'What projects has Bright built?' },
   { label: 'Skills', query: 'What are Bright\'s skills?' },
-  { label: 'Experience', query: 'What experience does Bright have?' },
+  { label: 'Hire Bright', query: 'Is Bright good? Should I hire him?' },
   { label: 'Contact', query: 'How can I contact Bright?' },
+];
+
+const FALLBACKS = [
+  "That's a great question! While I might not have the specifics on that, I can tell you that Bright is a **problem-solver at heart**. Whatever challenge you're facing, he'd love to hear about it and figure out the best approach together.\n\nReach out at **goldenboymoyo@gmail.com** — he typically responds within a day!",
+  "Interesting question! I don't have the exact answer, but here's what I do know — Bright is **reliable, skilled, and genuinely passionate** about delivering great work. If this is related to a project, I'd recommend reaching out to him directly.\n\n📧 **goldenboymoyo@gmail.com**\n📱 **+263 774 765 928**",
+  "I don't have that specific information, but Bright is always happy to chat! He's built **14+ projects**, works with **22+ technologies**, and brings both **development and marketing** expertise to every project.\n\nWhatever you need, chances are he can help. Drop him a message through the Contact section!",
+  "Great question! I may not have the exact details, but Bright is known for his **attention to detail, clean code, and user-first design**. He treats every project like it's his own.\n\nWant to know more? Head to the **Contact** section or email him at **goldenboymoyo@gmail.com**!",
 ];
 
 function findAnswer(input) {
@@ -60,7 +87,9 @@ function findAnswer(input) {
       return entry.answer;
     }
   }
-  return "I'm not sure about that. Try asking about Bright's **projects**, **skills**, **experience**, or how to **contact** him. You can also visit the relevant sections on this page!";
+  // Pick a random trust-building fallback
+  const idx = Math.floor(Math.random() * FALLBACKS.length);
+  return FALLBACKS[idx];
 }
 
 function formatMessage(text) {
