@@ -1,4 +1,5 @@
 import { FiArrowUp } from 'react-icons/fi';
+import Logo from './Logo.jsx';
 import SocialLinks from './SocialLinks.jsx';
 
 export default function Footer() {
@@ -8,7 +9,7 @@ export default function Footer() {
     <footer className="relative border-t border-white/10 px-6 md:px-12 py-12">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="flex items-center gap-3">
-          <span className="font-display text-xl tracking-widest text-ink">BM<span className="text-crimson">.</span></span>
+          <Logo size={32} className="text-ink" />
           <span className="text-xs text-muted hidden sm:inline">Bright Moyo — Software Developer</span>
         </div>
 

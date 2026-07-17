@@ -5,9 +5,59 @@ import vfbaImg from '../assets/vfba.png';
 import softwarePortImg from '../assets/software_port.png';
 import briefwireImg from '../assets/briefwire.png';
 import digitalPortImg from '../assets/digital_port.png';
-import alyssaImg from '../assets/alyssa.png';
 
 export const PROJECTS = [
+  {
+    id: 'boma',
+    title: 'Boma Experience',
+    category: 'Experiential Tourism Platform',
+    live: 'https://bomaexperiencecozw.vercel.app/',
+    github: null,
+    image: null,
+    description: 'An immersive tourism experience platform for Boma Adventures, showcasing cultural dining, wildlife encounters, and adventure activities with a rich visual narrative.',
+    tech: ['React', 'Tailwind CSS', 'Vercel'],
+  },
+  {
+    id: 'ignatius',
+    title: 'Ignatius Portfolio',
+    category: 'Personal Portfolio',
+    live: 'https://ignatius-portfolio-eight.vercel.app/',
+    github: null,
+    image: null,
+    description: 'A sleek personal portfolio site designed to showcase projects, skills, and professional identity with clean typography and smooth interactions.',
+    tech: ['React', 'Tailwind CSS', 'Framer Motion'],
+  },
+  {
+    id: 'tmpicknpay',
+    title: 'Tmpicknpay Website',
+    category: 'E-Commerce Platform',
+    live: 'https://tmpicknpay-website.vercel.app/',
+    github: null,
+    image: null,
+    description: 'A modern e-commerce website featuring product browsing, cart functionality, and a streamlined checkout experience built for performance.',
+    tech: ['React', 'Tailwind CSS', 'Vercel'],
+  },
+  {
+    id: 'vfba',
+    title: 'Victoria Falls Boxing Academy',
+    category: 'Gym Management System',
+    live: 'https://vfba-website.vercel.app/',
+    github: null,
+    image: vfbaImg,
+    description: 'A full-featured attendance management system for VFBA, allowing coaches and athletes to track attendance, schedules, notifications, and training activities.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase'],
+    highlights: ['Check In', 'Check Out', 'Notifications', 'Attendance Tracking', 'Training Schedule', 'Coach Dashboard'],
+  },
+  {
+    id: 'jumpstart',
+    title: 'JumpStart',
+    category: 'Web Application',
+    live: 'https://jumpstart-vmub.vercel.app/',
+    github: null,
+    image: null,
+    description: 'A dynamic web application designed to help users kickstart their projects with an engaging interface and streamlined user flow.',
+    tech: ['React', 'Tailwind CSS', 'Vercel'],
+  },
   {
     id: 'televivi',
     title: 'Vic Falls TeleVivi',
@@ -39,17 +89,6 @@ export const PROJECTS = [
     tech: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB'],
   },
   {
-    id: 'vfba',
-    title: 'Victoria Falls Boxing Academy Attendance System',
-    category: 'Gym Management System',
-    live: 'https://vfba-attendance.vercel.app/',
-    github: null,
-    image: vfbaImg,
-    description: 'A boxer attendance management system that allows coaches and athletes to manage attendance, schedules, notifications, and training activities.',
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-    highlights: ['Check In', 'Check Out', 'Notifications', 'Attendance Tracking', 'Training Schedule', 'Coach Dashboard'],
-  },
-  {
     id: 'devportfolio',
     title: 'Software Developer Portfolio',
     category: 'Portfolio',
@@ -78,15 +117,5 @@ export const PROJECTS = [
     image: digitalPortImg,
     description: 'A personal digital portfolio showcasing projects, technical skills, and frontend development capabilities.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-  },
-  {
-    id: 'alyssa',
-    title: 'Alyssa Personal Space',
-    category: 'Personal Website',
-    live: 'https://alyssapersonalspace.vercel.app/',
-    github: null,
-    image: alyssaImg,
-    description: 'A modern personal brand website with elegant layouts, storytelling, and responsive interactions.',
-    tech: ['React', 'Tailwind CSS'],
   },
 ];

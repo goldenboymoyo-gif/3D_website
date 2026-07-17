@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FiSun, FiMoon, FiDownload } from 'react-icons/fi';
-import profileImg from '../assets/profile.jpg';
+import Logo from './Logo.jsx';
 import SocialLinks from './SocialLinks.jsx';
 
 const LINKS = [
@@ -35,8 +35,8 @@ export default function Navbar() {
           scrolled ? 'py-4 glass' : 'py-7 bg-transparent'
         }`}
       >
-        <a href="#home" className="font-display text-lg tracking-widest" data-cursor-hover>
-          BM<span className="text-crimson">.</span>
+        <a href="#home" className="flex items-center gap-2" data-cursor-hover>
+          <Logo size={28} className="text-ink" />
         </a>
 
         <ul className="hidden lg:flex gap-8">
@@ -91,8 +91,8 @@ export default function Navbar() {
           aria-label="Navigation menu"
           onKeyDown={(e) => { if (e.key === 'Escape') setMenuOpen(false); }}
         >
-          <div className="w-20 h-20 rounded-full overflow-hidden border border-crimson/40 mb-2">
-            <img src={profileImg} alt="Bright Moyo" loading="lazy" className="w-full h-full object-cover" />
+          <div className="mb-2">
+            <Logo size={64} className="text-ink" />
           </div>
           {LINKS.map((l) => (
             <a

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import profileImg from '../assets/profile.jpg';
+import Logo from './Logo.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,7 +56,7 @@ export default function About() {
         ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
       });
-      gsap.from('.about-portrait', {
+      gsap.from('.about-logo-reveal', {
         clipPath: 'inset(0 0 100% 0)',
         duration: 1.2,
         ease: 'power4.inOut',
@@ -104,13 +104,8 @@ export default function About() {
         </div>
 
         <div className="about-reveal">
-          <div className="relative aspect-[4/5] max-w-sm ml-auto overflow-hidden border border-white/10 about-portrait">
-            <img
-              src={profileImg}
-              alt="Bright Moyo — Software Developer"
-              loading="lazy"
-              className="w-full h-full object-cover"
-            />
+          <div className="relative aspect-[4/5] max-w-sm ml-auto overflow-hidden border border-white/10 about-logo-reveal flex items-center justify-center bg-surface/60">
+            <Logo size={160} className="text-ink/80" />
             <div className="absolute inset-0 bg-gradient-to-t from-base/70 to-transparent" />
           </div>
 

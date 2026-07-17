@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import profileImg from '../assets/profile.jpg';
+import Logo from './Logo.jsx';
 
 export default function Loader({ onDone }) {
   const [progress, setProgress] = useState(0);
@@ -37,12 +37,11 @@ export default function Loader({ onDone }) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
-            className="w-20 h-20 rounded-full overflow-hidden border border-crimson/40 mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img src={profileImg} alt="Bright Moyo" className="w-full h-full object-cover" />
+            <Logo size={72} className="text-ink mb-6" />
           </motion.div>
           <motion.div
             className="font-display text-2xl tracking-[0.3em] text-ink mb-8"

@@ -1,15 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
-import profileImg from '../assets/profile.jpg';
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck } from 'react-icons/fi';
+import emailjs from '@emailjs/browser';
+import Logo from './Logo.jsx';
 import SocialLinks from './SocialLinks.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const AUTO_REPLY_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID || '';
+
 export default function Contact() {
   const sectionRef = useRef(null);
+  const formRef = useRef(null);
+  const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -21,11 +30,59 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+      emailjs.init(PUBLIC_KEY);
+    }
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3500);
-    e.target.reset();
+    if (sending || sent) return;
+
+    if (PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+      setError('Email service is not configured yet. Please contact me directly via email.');
+      return;
+    }
+
+    setSending(true);
+    setError('');
+
+    try {
+      const form = formRef.current;
+      const formData = new FormData(form);
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        from_name: formData.get('name'),
+        from_email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+        to_name: 'Bright Moyo',
+      });
+
+      if (AUTO_REPLY_TEMPLATE_ID) {
+        try {
+          await emailjs.send(SERVICE_ID, AUTO_REPLY_TEMPLATE_ID, {
+            from_name: formData.get('name'),
+            from_email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+            to_name: formData.get('name'),
+          });
+        } catch {
+          // auto-reply is optional — don't block main flow
+        }
+      }
+
+      setSent(true);
+      form.reset();
+      setTimeout(() => setSent(false), 5000);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Failed to send message. Please try again or email me directly.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -39,7 +96,7 @@ export default function Contact() {
           </p>
 
           <div className="contact-reveal flex items-center gap-4 mb-8">
-            <img src={profileImg} alt="Bright Moyo" loading="lazy" className="w-14 h-14 rounded-full object-cover border border-crimson/30" />
+            <Logo size={56} className="text-ink shrink-0" />
             <div>
               <div className="text-ink font-display">Bright Moyo</div>
               <div className="text-xs text-muted uppercase tracking-widest">Software Developer</div>
@@ -66,7 +123,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="contact-reveal glass border border-white/10 p-8 space-y-5" aria-label="Contact form">
+        <form ref={formRef} onSubmit={handleSubmit} className="contact-reveal glass border border-white/10 p-8 space-y-5" aria-label="Contact form">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="contact-name" className="block text-xs uppercase tracking-widest text-muted mb-2">Name</label>
@@ -85,12 +142,26 @@ export default function Contact() {
             <label htmlFor="contact-message" className="block text-xs uppercase tracking-widest text-muted mb-2">Message</label>
             <textarea id="contact-message" name="message" required rows="5" autoComplete="off" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors resize-none" />
           </div>
+
+          {error && (
+            <div className="text-xs text-red-400 bg-red-400/10 border border-red-400/20 px-4 py-3 rounded">
+              {error}
+            </div>
+          )}
+
+          {sent && (
+            <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-4 py-3 rounded">
+              <FiCheck size={14} /> Message sent successfully! Thank you for reaching out.
+            </div>
+          )}
+
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-white hover:text-base transition-colors duration-300"
+            disabled={sending}
+            className="w-full flex items-center justify-center gap-2 bg-crimson text-white py-4 text-xs uppercase tracking-[0.12em] font-medium hover:bg-white hover:text-base transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             data-cursor-hover
           >
-            <FiSend size={14} /> {sent ? 'Message Sent ✓' : 'Send Message'}
+            <FiSend size={14} /> {sending ? 'Sending...' : sent ? 'Message Sent ✓' : 'Send Message'}
           </button>
         </form>
       </div>
