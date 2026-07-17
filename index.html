@@ -35,29 +35,24 @@
   }
   </script>
 
+  <!-- Force dark before anything renders — prevents white flash -->
+  <style>
+    html, body { background: #0A0A0A !important; color: #FFFFFF !important; }
+    html.light, html.light body { background: #F8F9FA !important; color: #111827 !important; }
+  </style>
+  <script>
+    // Always force dark on load. Light only applies if user clicks toggle THIS session.
+    (function() {
+      try { localStorage.setItem('bm-theme', 'dark'); } catch(e) {}
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
 </head>
 <body>
-  <script>
-    // Force dark mode as default. Only add 'light' class if user explicitly chose it.
-    (function() {
-      try {
-        var theme = localStorage.getItem('bm-theme');
-        if (theme === 'light') {
-          document.documentElement.classList.add('light');
-        } else {
-          // Ensure dark mode by removing light class and setting default
-          document.documentElement.classList.remove('light');
-          localStorage.setItem('bm-theme', 'dark');
-        }
-      } catch(e) {
-        document.documentElement.classList.remove('light');
-      }
-    })();
-  </script>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
