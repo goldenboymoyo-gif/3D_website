@@ -108,7 +108,7 @@ export default function Contact() {
           onSubmit={handleSubmit}
           action={`https://formsubmit.co/${FORMSUBMIT_EMAIL}`}
           method="POST"
-          className="contact-reveal glass border border-white/10 p-8 space-y-5"
+          className="contact-reveal glass border border-white/10 p-8 space-y-6"
           aria-label="Contact form"
         >
           <input type="hidden" name="_captcha" value="false" />
@@ -116,19 +116,23 @@ export default function Contact() {
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value="" />
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-5">
             <div>
-              <input id="contact-name" name="name" required type="text" autoComplete="name" placeholder="Your name" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
+              <label htmlFor="contact-name" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Name</label>
+              <input id="contact-name" name="name" required type="text" autoComplete="name" placeholder="Enter your full name" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
             </div>
             <div>
-              <input id="contact-email" name="email" required type="email" autoComplete="email" placeholder="your@email.com" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
+              <label htmlFor="contact-email" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Email</label>
+              <input id="contact-email" name="email" required type="email" autoComplete="email" placeholder="Enter your email address" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
             </div>
           </div>
           <div>
-            <input id="contact-subject" name="subject" required type="text" autoComplete="off" placeholder="Subject" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
+            <label htmlFor="contact-subject" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Subject</label>
+            <input id="contact-subject" name="subject" required type="text" autoComplete="off" placeholder="What is this about?" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
           </div>
           <div>
-            <textarea id="contact-message" name="message" required rows="5" autoComplete="off" placeholder="Your message..." className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors resize-none placeholder:text-muted/50" />
+            <label htmlFor="contact-message" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Message</label>
+            <textarea id="contact-message" name="message" required rows="5" autoComplete="off" placeholder="Write your message here..." className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors resize-none placeholder:text-muted/50" />
           </div>
 
           {error && (
