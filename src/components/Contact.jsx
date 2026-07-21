@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiAlertCircle, FiGithub, FiLinkedin } from 'react-icons/fi';
 import Logo from './Logo.jsx';
 import SocialLinks from './SocialLinks.jsx';
 
@@ -15,6 +16,7 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const [senderName, setSenderName] = useState('');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -38,6 +40,8 @@ export default function Contact() {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       data.subject = `[Portfolio] ${data.subject || 'New Message'}`;
+
+      setSenderName(data.name || '');
 
       const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
         method: 'POST',
@@ -106,15 +110,15 @@ export default function Contact() {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          action={`https://formsubmit.co/${FORMSUBMIT_EMAIL}`}
-          method="POST"
           className="contact-reveal glass border border-white/10 p-8 space-y-6"
           aria-label="Contact form"
         >
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_subject" value="[Portfolio] New Message" />
-          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_template" value="custom" />
           <input type="hidden" name="_next" value="" />
+          <input type="hidden" name="_autoresponse" value="https://bright-moyo-software-portfolio.vercel.app/email-templates/auto-reply.html" />
+          <input type="hidden" name="_template.url" value="https://bright-moyo-software-portfolio.vercel.app/email-templates/owner-notification.html" />
 
           <div className="grid grid-cols-2 gap-5">
             <div>
@@ -142,11 +146,52 @@ export default function Contact() {
             </div>
           )}
 
-          {sent && (
-            <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-4 py-3 rounded">
-              <FiCheck size={14} /> Message sent successfully! Thank you for reaching out — I'll reply soon.
-            </div>
-          )}
+          <AnimatePresence>
+            {sent && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+                className="glass border border-white/10 p-6 text-center"
+              >
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-crimson/15 border border-crimson/30 flex items-center justify-center">
+                  <FiCheck size={24} className="text-crimson" />
+                </div>
+                <h3 className="font-display text-lg text-ink mb-1">Message Sent!</h3>
+                <p className="text-sm text-muted mb-5">
+                  Thanks {senderName.split(' ')[0] || 'there'}! I'll get back to you within 24 hours.
+                </p>
+
+                <div className="border-t border-white/10 pt-4 mb-4">
+                  <p className="text-xs text-muted mb-3 uppercase tracking-wider">While you wait, check out my work</p>
+                  <a
+                    href="https://bright-moyo-software-portfolio.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-crimson text-white px-6 py-2.5 text-xs uppercase tracking-widest font-medium hover:opacity-80 transition-opacity"
+                    data-cursor-hover
+                  >
+                    View Portfolio
+                  </a>
+                </div>
+
+                <div className="flex items-center justify-center gap-4 pt-2">
+                  <a href="https://github.com/goldenboymoyo-gif" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-crimson transition-colors" data-cursor-hover aria-label="GitHub">
+                    <FiGithub size={18} />
+                  </a>
+                  <a href="https://linkedin.com/in/bright-moyo-8728b83ab" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-crimson transition-colors" data-cursor-hover aria-label="LinkedIn">
+                    <FiLinkedin size={18} />
+                  </a>
+                  <a href="mailto:goldenboymoyo@gmail.com" className="text-muted hover:text-crimson transition-colors" data-cursor-hover aria-label="Email">
+                    <FiMail size={18} />
+                  </a>
+                </div>
+
+                <p className="text-xs text-muted/60 mt-4">A confirmation has been sent to your email</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <button
             type="submit"

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Portfolio Message</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0A0A0A;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+
+  <!-- Wrapper -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0A0A0A;padding:40px 20px;">
+    <tr>
+      <td align="center">
+
+        <!-- Container -->
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:0 0 32px 0;text-align:center;">
+              <!-- BM Logo -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                <tr>
+                  <td style="width:56px;height:56px;border:2px solid #DC2626;transform:rotate(45deg);text-align:center;vertical-align:middle;">
+                    <div style="transform:rotate(-45deg);font-family:'Segoe UI',Roboto,sans-serif;font-size:18px;font-weight:700;color:#DC2626;letter-spacing:2px;">BM</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 0 32px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="border-bottom:1px solid rgba(220,38,38,0.3);"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Notification Badge -->
+          <tr>
+            <td style="padding:0 0 24px 0;" align="center">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background-color:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.3);border-radius:20px;padding:8px 20px;">
+                    <span style="font-size:11px;font-weight:600;color:#DC2626;letter-spacing:2px;text-transform:uppercase;">New Message</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Main Card -->
+          <tr>
+            <td style="background-color:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:36px;">
+
+              <!-- Sender Info -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 28px 0;">
+                <tr>
+                  <td style="padding:0 0 4px 0;">
+                    <span style="font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:2px;text-transform:uppercase;">From</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table role="presentation" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <!-- Avatar Circle -->
+                        <td style="width:44px;height:44px;background-color:rgba(220,38,38,0.2);border-radius:50%;text-align:center;vertical-align:middle;padding-right:14px;">
+                          <span style="font-size:16px;font-weight:700;color:#DC2626;font-family:'Segoe UI',Roboto,sans-serif;">{{nameFirstLetter}}</span>
+                        </td>
+                        <td style="vertical-align:middle;">
+                          <div style="font-size:16px;font-weight:600;color:#FFFFFF;margin-bottom:2px;">{{name}}</div>
+                          <a href="mailto:{{email}}" style="font-size:13px;color:#DC2626;text-decoration:none;">{{email}}</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Divider -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding:0 0 24px 0;border-bottom:1px solid rgba(255,255,255,0.06);"></td>
+                </tr>
+              </table>
+
+              <!-- Subject -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px 0;">
+                <tr>
+                  <td style="padding:0 0 6px 0;">
+                    <span style="font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:2px;text-transform:uppercase;">Subject</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h2 style="margin:0;font-size:18px;font-weight:600;color:#FFFFFF;line-height:1.4;">{{subject}}</h2>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Message -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 28px 0;">
+                <tr>
+                  <td style="padding:0 0 6px 0;">
+                    <span style="font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:2px;text-transform:uppercase;">Message</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:20px;">
+                    <p style="margin:0;font-size:14px;color:#D1D5DB;line-height:1.75;white-space:pre-wrap;">{{message}}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Reply Button -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center">
+                    <table role="presentation" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="background-color:#DC2626;border-radius:4px;">
+                          <a href="mailto:{{email}}?subject=Re: {{subject}}" style="display:inline-block;padding:14px 40px;font-size:12px;font-weight:600;color:#FFFFFF;text-decoration:none;text-transform:uppercase;letter-spacing:2px;font-family:'Segoe UI',Roboto,sans-serif;">Reply to {{name}}</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Metadata -->
+          <tr>
+            <td style="padding:20px 0 0 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:20px 36px;">
+                <tr>
+                  <td>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="width:50%;padding:4px 0;">
+                          <span style="font-size:11px;color:#6B7280;">Submitted:</span>
+                          <span style="font-size:12px;color:#D1D5DB;margin-left:6px;">{{date}}</span>
+                        </td>
+                        <td style="width:50%;padding:4px 0;" align="right">
+                          <span style="font-size:11px;color:#6B7280;">Via:</span>
+                          <span style="font-size:12px;color:#D1D5DB;margin-left:6px;">Portfolio Contact Form</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:32px 0 0 0;text-align:center;">
+              <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;">
+                This message was sent through your portfolio contact form.
+              </p>
+              <p style="margin:0;font-size:11px;color:#4B5563;">
+                &copy; 2026 Bright Moyo &bull; goldenboymoyo@gmail.com
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Container -->
+
+      </td>
+    </tr>
+  </table>
+  <!-- /Wrapper -->
+
+</body>
+</html>
