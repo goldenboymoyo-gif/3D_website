@@ -9,6 +9,19 @@ function esc(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+const BM_LOGO_SVG = `<svg width="56" height="56" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;">
+  <path d="M34 4 L66 4 L96 34 L96 66 L66 96 L34 96 L4 66 L4 34 Z" stroke="#FFFFFF" stroke-width="1.5" opacity="0.35"/>
+  <rect x="22" y="28" width="3.5" height="44" rx="1.75" fill="#FFFFFF"/>
+  <path d="M22 28 H40 C47 28 50 32 50 36.5 C50 41 47 45 40 45 H22" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 50 H42 C50 50 54 55 54 61 C54 67 50 72 42 72 H22" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="22" y="46.5" width="32" height="3" rx="1.5" fill="#DC2626"/>
+  <line x1="60" y1="72" x2="60" y2="42" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="78" y1="72" x2="78" y2="42" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+  <polyline points="60,42 69,30 78,42" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="69" y1="50" x2="69" y2="42" stroke="#DC2626" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+  <polygon points="50,10 53,14 50,18 47,14" fill="#DC2626" opacity="0.5"/>
+</svg>`;
+
 function ownerNotification({ name, email, message }) {
   const n = esc(name), e = esc(email), m = esc(message);
   const init = n.charAt(0).toUpperCase();
@@ -19,19 +32,9 @@ function ownerNotification({ name, email, message }) {
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0A;padding:40px 20px;"><tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 
-  <!-- Logo -->
-  <tr><td style="padding-bottom:32px;text-align:center;">
-    <table cellpadding="0" cellspacing="0" style="margin:0 auto;"><tr>
-      <td style="width:56px;height:56px;border:2px solid #DC2626;transform:rotate(45deg);text-align:center;vertical-align:middle;">
-        <div style="transform:rotate(-45deg);font-size:18px;font-weight:700;color:#DC2626;letter-spacing:2px;">BM</div>
-      </td>
-    </tr></table>
-  </td></tr>
-
-  <!-- Red divider -->
+  <tr><td style="padding-bottom:32px;text-align:center;">${BM_LOGO_SVG}</td></tr>
   <tr><td style="padding-bottom:32px;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-bottom:1px solid rgba(220,38,38,0.3);"></td></tr></table></td></tr>
 
-  <!-- Badge -->
   <tr><td style="padding-bottom:24px;" align="center">
     <table cellpadding="0" cellspacing="0"><tr>
       <td style="background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.3);border-radius:20px;padding:8px 20px;">
@@ -40,10 +43,8 @@ function ownerNotification({ name, email, message }) {
     </tr></table>
   </td></tr>
 
-  <!-- Main card -->
   <tr><td style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:36px;">
 
-    <!-- Sender -->
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
       <tr><td style="padding-bottom:4px;"><span style="font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:2px;text-transform:uppercase;">From</span></td></tr>
       <tr><td><table cellpadding="0" cellspacing="0"><tr>
@@ -57,17 +58,14 @@ function ownerNotification({ name, email, message }) {
       </tr></table></td></tr>
     </table>
 
-    <!-- Divider -->
     <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.06);"></td></tr></table>
 
-    <!-- Message -->
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
       <tr><td style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:20px;">
         <p style="margin:0;font-size:14px;color:#D1D5DB;line-height:1.75;white-space:pre-wrap;">${m}</p>
       </td></tr>
     </table>
 
-    <!-- Reply button -->
     <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
       <table cellpadding="0" cellspacing="0"><tr>
         <td style="background:#DC2626;border-radius:4px;">
@@ -78,7 +76,6 @@ function ownerNotification({ name, email, message }) {
 
   </td></tr>
 
-  <!-- Meta -->
   <tr><td style="padding:20px 0 0 0;">
     <table width="100%" cellpadding="0" cellspacing="0" style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:20px 36px;"><tr><td>
       <table width="100%" cellpadding="0" cellspacing="0"><tr>
@@ -88,7 +85,6 @@ function ownerNotification({ name, email, message }) {
     </td></tr></table>
   </td></tr>
 
-  <!-- Footer -->
   <tr><td style="padding:32px 0 0 0;text-align:center;">
     <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;">This message was sent through your portfolio contact form.</p>
     <p style="margin:0;font-size:11px;color:#4B5563;">&copy; 2026 Bright Moyo &bull; goldenboymoyo@gmail.com</p>
@@ -105,42 +101,21 @@ function autoReply({ name, message }) {
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0A;padding:40px 20px;"><tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 
-  <!-- Logo -->
-  <tr><td style="padding-bottom:32px;text-align:center;">
-    <table cellpadding="0" cellspacing="0" style="margin:0 auto;"><tr>
-      <td style="width:56px;height:56px;border:2px solid #DC2626;transform:rotate(45deg);text-align:center;vertical-align:middle;">
-        <div style="transform:rotate(-45deg);font-size:18px;font-weight:700;color:#DC2626;letter-spacing:2px;">BM</div>
-      </td>
-    </tr></table>
-  </td></tr>
-
-  <!-- Red divider -->
+  <tr><td style="padding-bottom:32px;text-align:center;">${BM_LOGO_SVG}</td></tr>
   <tr><td style="padding-bottom:32px;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-bottom:1px solid rgba(220,38,38,0.3);"></td></tr></table></td></tr>
 
-  <!-- Main card -->
   <tr><td style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:40px 36px;">
 
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr><td style="padding-bottom:8px;"><span style="font-size:11px;font-weight:600;color:#DC2626;letter-spacing:3px;text-transform:uppercase;">Message Received</span></td></tr>
       <tr><td style="padding-bottom:20px;"><h1 style="margin:0;font-size:26px;font-weight:700;color:#FFFFFF;line-height:1.3;">Thanks for reaching out, ${n}!</h1></td></tr>
       <tr><td style="padding-bottom:32px;">
-        <p style="margin:0;font-size:15px;color:#9CA3AF;line-height:1.7;">I've received your message and will get back to you within <strong style="color:#FFFFFF;">24 hours</strong>. In the meantime, feel free to explore my work or connect with me on social media.</p>
+        <p style="margin:0;font-size:15px;color:#9CA3AF;line-height:1.7;">I've received your message and will get back to you within <strong style="color:#FFFFFF;">24 hours</strong>.</p>
       </td></tr>
     </table>
 
-    <!-- CTA -->
-    <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding-bottom:32px;" align="center">
-      <table cellpadding="0" cellspacing="0"><tr>
-        <td style="background:#DC2626;border-radius:4px;">
-          <a href="${PORTFOLIO_URL}" target="_blank" style="display:inline-block;padding:14px 40px;font-size:12px;font-weight:600;color:#FFFFFF;text-decoration:none;text-transform:uppercase;letter-spacing:2px;">View Portfolio</a>
-        </td>
-      </tr></table>
-    </td></tr></table>
-
-    <!-- Divider -->
     <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.06);"></td></tr></table>
 
-    <!-- Their message -->
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr><td style="padding-bottom:12px;"><span style="font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:2px;text-transform:uppercase;">Your Message</span></td></tr>
       <tr><td style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:16px 20px;">
@@ -150,23 +125,9 @@ function autoReply({ name, message }) {
 
   </td></tr>
 
-  <!-- Social -->
-  <tr><td style="padding:20px 0 0 0;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:24px 36px;">
-      <tr><td style="padding-bottom:16px;"><span style="font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:2px;text-transform:uppercase;">Stay Connected</span></td></tr>
-      <tr><td><table width="100%" cellpadding="0" cellspacing="0"><tr>
-        <td width="33%" style="padding:8px 0;" align="center"><a href="mailto:goldenboymoyo@gmail.com" style="text-decoration:none;"><table cellpadding="0" cellspacing="0"><tr><td style="width:40px;height:40px;border:1px solid rgba(255,255,255,0.15);border-radius:50%;text-align:center;vertical-align:middle;"><span style="font-size:16px;color:#DC2626;">&#9993;</span></td></tr></table><div style="font-size:11px;color:#9CA3AF;margin-top:6px;">Email</div></a></td>
-        <td width="33%" style="padding:8px 0;" align="center"><a href="https://github.com/goldenboymoyo-gif" target="_blank" style="text-decoration:none;"><table cellpadding="0" cellspacing="0"><tr><td style="width:40px;height:40px;border:1px solid rgba(255,255,255,0.15);border-radius:50%;text-align:center;vertical-align:middle;"><span style="font-size:16px;color:#DC2626;">GH</span></td></tr></table><div style="font-size:11px;color:#9CA3AF;margin-top:6px;">GitHub</div></a></td>
-        <td width="33%" style="padding:8px 0;" align="center"><a href="https://linkedin.com/in/bright-moyo-8728b83ab" target="_blank" style="text-decoration:none;"><table cellpadding="0" cellspacing="0"><tr><td style="width:40px;height:40px;border:1px solid rgba(255,255,255,0.15);border-radius:50%;text-align:center;vertical-align:middle;"><span style="font-size:16px;color:#DC2626;">in</span></td></tr></table><div style="font-size:11px;color:#9CA3AF;margin-top:6px;">LinkedIn</div></a></td>
-      </tr></table></td></tr>
-    </table>
-  </td></tr>
-
-  <!-- Footer -->
   <tr><td style="padding:32px 0 0 0;text-align:center;">
     <p style="margin:0 0 8px 0;font-size:12px;color:#6B7280;">Bright Moyo &mdash; Software Developer &amp; Digital Marketer</p>
-    <p style="margin:0 0 4px 0;font-size:11px;color:#4B5563;">Victoria Falls, Zimbabwe &bull; +263 774 765 928</p>
-    <p style="margin:0;font-size:11px;color:#4B5563;">&copy; 2026 All rights reserved.</p>
+    <p style="margin:0;font-size:11px;color:#4B5563;">Victoria Falls, Zimbabwe</p>
   </td></tr>
 
 </table></td></tr></table></body></html>`;
@@ -184,6 +145,8 @@ export default async function handler(req, res) {
   if (!name || !email || !message) return res.status(400).json({ message: 'Name, email, and message are required.' });
   if (!process.env.RESEND_API_KEY) return res.status(500).json({ message: 'Server misconfigured: RESEND_API_KEY is not set.' });
 
+  let ownerSent = false;
+
   try {
     await resend.emails.send({
       from: 'Bright Moyo <onboarding@resend.dev>',
@@ -192,17 +155,25 @@ export default async function handler(req, res) {
       html: ownerNotification({ name, email, message }),
       reply_to: email,
     });
+    ownerSent = true;
+  } catch (err) {
+    console.error('Owner notification failed:', err);
+  }
 
+  try {
     await resend.emails.send({
       from: 'Bright Moyo <onboarding@resend.dev>',
       to: email,
       subject: 'Thanks for reaching out!',
       html: autoReply({ name, message }),
     });
-
-    return res.status(200).json({ message: 'Emails sent successfully.' });
   } catch (err) {
-    console.error('Resend error:', err);
-    return res.status(500).json({ message: 'Failed to send email. Please try again.' });
+    console.error('Auto-reply failed:', err);
   }
+
+  if (!ownerSent) {
+    return res.status(500).json({ message: 'Failed to send notification. Please try again.' });
+  }
+
+  return res.status(200).json({ message: 'Emails sent successfully.' });
 }

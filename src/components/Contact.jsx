@@ -143,23 +143,10 @@ export default function Contact() {
                 </div>
                 <h3 className="font-display text-lg text-ink mb-1">Message Sent!</h3>
                 <p className="text-sm text-muted mb-5">
-                  Thanks {senderName.split(' ')[0] || 'there'}! I'll get back to you within 24 hours.
+                  Thanks {senderName.split(' ')[0] || 'there'}! I'll get back to you within 24 hours. Check your email for a confirmation.
                 </p>
 
-                <div className="border-t border-white/10 pt-4 mb-4">
-                  <p className="text-xs text-muted mb-3 uppercase tracking-wider">While you wait, check out my work</p>
-                  <a
-                    href="https://bright-moyo-software-portfolio.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-crimson text-white px-6 py-2.5 text-xs uppercase tracking-widest font-medium hover:opacity-80 transition-opacity"
-                    data-cursor-hover
-                  >
-                    View Portfolio
-                  </a>
-                </div>
-
-                <div className="flex items-center justify-center gap-4 pt-2">
+                <div className="flex items-center justify-center gap-4 pt-2 border-t border-white/10">
                   <a href="https://github.com/goldenboymoyo-gif" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-crimson transition-colors" data-cursor-hover aria-label="GitHub">
                     <FiGithub size={18} />
                   </a>
@@ -170,8 +157,6 @@ export default function Contact() {
                     <FiMail size={18} />
                   </a>
                 </div>
-
-                <p className="text-xs text-muted/60 mt-4">A confirmation has been sent to your email</p>
               </motion.div>
             )}
           </AnimatePresence>
