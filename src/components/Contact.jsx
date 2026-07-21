@@ -8,8 +8,6 @@ import SocialLinks from './SocialLinks.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FORMSUBMIT_EMAIL = 'goldenboymoyo@gmail.com';
-
 export default function Contact() {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
@@ -39,22 +37,18 @@ export default function Contact() {
       const form = formRef.current;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      data.subject = `[Portfolio] ${data.subject || 'New Message'}`;
 
       setSenderName(data.name || '');
 
-      const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
 
       const result = await res.json();
 
-      if (res.ok && result.success !== false) {
+      if (res.ok) {
         setSent(true);
         form.reset();
         setTimeout(() => setSent(false), 6000);
@@ -62,7 +56,7 @@ export default function Contact() {
         throw new Error(result.message || 'Submission failed');
       }
     } catch (err) {
-      console.error('FormSubmit error:', err);
+      console.error('Contact form error:', err);
       setError('Something went wrong. Please try again or email me directly at goldenboymoyo@gmail.com');
     } finally {
       setSending(false);
@@ -113,13 +107,6 @@ export default function Contact() {
           className="contact-reveal glass border border-white/10 p-8 space-y-6"
           aria-label="Contact form"
         >
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_subject" value="[Portfolio] New Message" />
-          <input type="hidden" name="_template" value="custom" />
-          <input type="hidden" name="_next" value="" />
-          <input type="hidden" name="_autoresponse" value="https://bright-moyo-software-portfolio.vercel.app/email-templates/auto-reply.html" />
-          <input type="hidden" name="_template.url" value="https://bright-moyo-software-portfolio.vercel.app/email-templates/owner-notification.html" />
-
           <div className="grid grid-cols-2 gap-5">
             <div>
               <label htmlFor="contact-name" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Name</label>
@@ -129,10 +116,6 @@ export default function Contact() {
               <label htmlFor="contact-email" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Email</label>
               <input id="contact-email" name="email" required type="email" autoComplete="email" placeholder="Enter your email address" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
             </div>
-          </div>
-          <div>
-            <label htmlFor="contact-subject" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Subject</label>
-            <input id="contact-subject" name="subject" required type="text" autoComplete="off" placeholder="What is this about?" className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-ink outline-none focus:border-crimson transition-colors placeholder:text-muted/50" />
           </div>
           <div>
             <label htmlFor="contact-message" className="block text-xs font-medium text-muted mb-2 uppercase tracking-wider">Message</label>
