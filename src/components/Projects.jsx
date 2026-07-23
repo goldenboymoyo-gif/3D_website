@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiExternalLink, FiGithub } from 'react-icons/fi';
+
 import { PROJECTS } from '../data/projects.js';
 import ProjectThumb from './ProjectThumb.jsx';
 import ProjectModal from './ProjectModal.jsx';
@@ -51,32 +51,16 @@ function ProjectCard({ project, index, onOpen }) {
           )}
         </div>
 
-        <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
+        <div onClick={(e) => e.stopPropagation()}>
           <a
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 bg-crimson/90 text-white py-2.5 text-[11px] uppercase tracking-[0.08em] font-medium hover:bg-crimson transition-colors"
+            className="text-[11px] uppercase tracking-[0.08em] text-crimson hover:text-white transition-colors font-medium"
             data-cursor-hover
           >
-            <FiExternalLink size={12} /> Live Site
+            View Live Site
           </a>
-          {project.github ? (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} GitHub repository`}
-              className="flex items-center justify-center gap-2 border border-white/15 text-ink px-3 py-2.5 text-[11px] uppercase tracking-[0.08em] hover:border-crimson hover:text-crimson transition-colors"
-              data-cursor-hover
-            >
-              <FiGithub size={12} />
-            </a>
-          ) : (
-            <span className="flex items-center justify-center gap-2 border border-white/10 text-muted/40 px-3 py-2.5 text-[11px]" aria-label="Repository not public" role="img">
-              <FiGithub size={12} />
-            </span>
-          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FiX, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 import ProjectThumb from './ProjectThumb.jsx';
 
 export default function ProjectModal({ project, index, onClose }) {
@@ -78,26 +78,11 @@ export default function ProjectModal({ project, index, onClose }) {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-crimson text-white px-6 py-3 text-xs uppercase tracking-[0.1em] font-medium hover:bg-white hover:text-base transition-colors"
+                  className="text-xs uppercase tracking-[0.1em] text-crimson hover:text-white transition-colors font-medium"
                   data-cursor-hover
                 >
-                  <FiExternalLink /> Live Website
+                  View Live Site
                 </a>
-                {project.github ? (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 border border-white/15 text-ink px-6 py-3 text-xs uppercase tracking-[0.1em] font-medium hover:border-crimson hover:text-crimson transition-colors"
-                    data-cursor-hover
-                  >
-                    <FiGithub /> GitHub
-                  </a>
-                ) : (
-                  <span className="flex items-center gap-2 border border-white/10 text-muted/50 px-6 py-3 text-xs uppercase tracking-[0.1em] cursor-not-allowed">
-                    <FiGithub /> Repository Private
-                  </span>
-                )}
               </div>
             </div>
           </motion.div>
