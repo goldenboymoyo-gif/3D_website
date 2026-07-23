@@ -73,7 +73,7 @@ export default function Navbar() {
             {light ? <FiMoon size={16} /> : <FiSun size={16} />}
           </button>
           <a
-            href="/Bright_Moyo_Resume.pdf"
+            href="/resume.html"
             className="hidden md:flex items-center gap-2 border border-white/15 px-5 py-2.5 text-xs uppercase tracking-[0.1em] hover:border-crimson hover:text-crimson transition-colors"
             data-cursor-hover
           >
