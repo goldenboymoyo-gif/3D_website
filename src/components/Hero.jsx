@@ -59,7 +59,7 @@ export default function Hero() {
             View Projects
           </a>
           <a
-            href="/resume.html"
+            href="/Bright_Moyo_Resume (1).docx"
             className="hero-cta border border-white/20 text-ink px-8 py-4 text-xs uppercase tracking-[0.12em] font-medium hover:border-crimson hover:text-crimson transition-all duration-300"
             data-cursor-hover
           >
