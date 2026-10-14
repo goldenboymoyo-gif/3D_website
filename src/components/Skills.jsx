@@ -2,13 +2,24 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  FiCode, FiGitBranch, FiFigma, FiDatabase, FiServer, FiTerminal, FiTrendingUp,
+  FiCode, FiGitBranch, FiFigma, FiDatabase, FiServer, FiTerminal, FiTrendingUp, FiCpu, FiZap, FiMessageSquare,
 } from 'react-icons/fi';
 import { SiReact, SiTailwindcss, SiJavascript, SiPython, SiTypescript, SiFirebase, SiSqlite, SiVercel, SiHtml5, SiCss } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CATEGORIES = [
+  {
+    name: 'AI and Automation',
+    icon: FiCpu,
+    skills: [
+      { name: 'n8n', icon: FiZap },
+      { name: 'Claude API', icon: FiCpu },
+      { name: 'Gemini API', icon: FiCpu },
+      { name: 'AI Chatbots', icon: FiMessageSquare },
+      { name: 'Workflow Design', icon: FiZap },
+    ],
+  },
   {
     name: 'Frontend',
     icon: FiCode,
@@ -18,7 +29,11 @@ const CATEGORIES = [
       { name: 'JavaScript', icon: SiJavascript },
       { name: 'React', icon: SiReact },
       { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Next.js', icon: FiCode },
       { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'GSAP', icon: FiCode },
+      { name: 'Framer Motion', icon: FiCode },
+      { name: 'Three.js', icon: FiCode },
     ],
   },
   {
@@ -26,6 +41,7 @@ const CATEGORIES = [
     icon: FiServer,
     skills: [
       { name: 'Node.js', icon: FiServer },
+      { name: 'Express.js', icon: FiServer },
       { name: 'Python', icon: SiPython },
     ],
   },
@@ -33,6 +49,9 @@ const CATEGORIES = [
     name: 'Database',
     icon: FiDatabase,
     skills: [
+      { name: 'PostgreSQL', icon: FiDatabase },
+      { name: 'Supabase', icon: FiDatabase },
+      { name: 'MongoDB', icon: FiDatabase },
       { name: 'Firebase', icon: SiFirebase },
       { name: 'SQLite', icon: SiSqlite },
     ],
@@ -46,6 +65,7 @@ const CATEGORIES = [
       { name: 'Figma', icon: FiFigma },
       { name: 'VS Code', icon: FiTerminal },
       { name: 'Vercel', icon: SiVercel },
+      { name: 'Postman', icon: FiTerminal },
     ],
   },
   {

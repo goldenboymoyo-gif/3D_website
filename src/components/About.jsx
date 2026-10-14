@@ -10,7 +10,7 @@ const STATS = [
   { label: 'Projects Completed', value: 14, suffix: '+' },
   { label: 'Technologies Learned', value: 22, suffix: '+' },
   { label: 'Started', value: 2026, suffix: '', isYear: true },
-  { label: 'Personal & Client Projects', value: 9, suffix: '' },
+  { label: 'Startups Cofounded', value: 1, suffix: '' },
 ];
 
 const FLOATING_ICONS = [
@@ -94,15 +94,16 @@ export default function About() {
             Code, Craft, and a Bit of Zambezi Grit
           </h2>
           <p className="about-reveal text-muted leading-relaxed mb-4">
-            I'm a software developer, UI/UX designer, and digital marketer based in Victoria Falls,
-            Zimbabwe. I build modern web applications that combine clean engineering with considered
-            design — and make sure they actually perform through smart marketing strategy. I enjoy
-            turning ideas into polished digital products — and I'm always
-            mid-way through learning the next thing.
+            I'm a technician at Argos Worldwide, where I build AI automations with n8n and Claude. I'm also a software
+            developer, UI/UX designer and digital marketer based in Victoria Falls, Zimbabwe, and a cofounder of Pugnera, a
+            boxing streaming platform for Africa. I build modern web applications that combine clean engineering with considered
+            design, and make sure they actually perform through smart marketing strategy. I enjoy
+            turning ideas into polished digital products, and I'm always
+            midway through learning the next thing.
           </p>
           <p className="about-reveal text-muted leading-relaxed">
-            My work spans product design, frontend engineering, backend systems, and digital marketing
-            — often all four on the same project, since I like owning an idea from sketch to shipped
+            My work spans AI automation, product design, frontend engineering, backend systems, and digital marketing,
+            often all four on the same project, since I like owning an idea from sketch to shipped
             feature to measurable results.
           </p>
 

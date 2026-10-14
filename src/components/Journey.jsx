@@ -13,8 +13,11 @@ const MILESTONES = [
   { label: 'Built Ironvale Construction' },
   { label: 'Built VFBA Attendance System' },
   { label: 'Built Brief Wire News App' },
-  { label: 'Building BoxArena (African Boxing Platform)' },
-  { label: 'Learning Backend Development (Firebase & Python)' },
+  { label: 'Started the Software Development Program at Uncommon.org' },
+  { label: 'Built websites for Muto Tours, VOBI Ministries and The Art House' },
+  { label: 'Became a technician at Argos Worldwide' },
+  { label: 'Built Arthur, an AI tender sourcing system, with n8n and Claude' },
+  { label: 'Cofounded Pugnera, a boxing streaming platform for Africa' },
   { label: 'Future Goal', future: true },
 ];
 

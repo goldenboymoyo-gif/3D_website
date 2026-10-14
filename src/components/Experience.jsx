@@ -1,40 +1,40 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiCode, FiLayout, FiFeather, FiBox, FiBookOpen, FiTrendingUp } from 'react-icons/fi';
+import { FiCode, FiLayout, FiFeather, FiBox, FiCpu, FiTrendingUp } from 'react-icons/fi';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ROLES = [
   {
+    title: 'Technician, Argos Worldwide',
+    desc: 'Building AI automations on self hosted n8n and Claude, including Arthur, a commodity tender sourcing system, plus the company website and backend.',
+    icon: FiBox,
+  },
+  {
+    title: 'AI Automation Developer',
+    desc: 'Designing n8n workflows with Claude and Gemini integrations, AI chatbots and data intake automation.',
+    icon: FiCpu,
+  },
+  {
     title: 'Software Developer',
-    desc: 'Designing and building responsive web applications using modern frontend technologies.',
+    desc: 'Designing, building and deploying 14+ web applications with React, Next.js, TypeScript and Node.js for freelance and personal clients.',
     icon: FiCode,
   },
   {
-    title: 'Frontend Developer',
-    desc: 'Building scalable React applications with clean UI and engaging interactions.',
+    title: 'Cofounder, Pugnera',
+    desc: 'Building a boxing streaming platform for Africa with live and on demand viewing, fighter profiles, rankings and news.',
     icon: FiLayout,
   },
   {
-    title: 'UI/UX Designer',
-    desc: 'Designing intuitive user experiences and modern interfaces.',
+    title: 'UI/UX and Graphic Designer',
+    desc: 'Designing intuitive interfaces, branding and graphics in Figma.',
     icon: FiFeather,
   },
   {
     title: 'Digital Marketer',
     desc: 'Driving growth through SEO, social media strategy, campaign analytics, and conversion optimization.',
     icon: FiTrendingUp,
-  },
-  {
-    title: 'Digital Product Builder',
-    desc: 'Transforming ideas into functional digital products through design and development.',
-    icon: FiBox,
-  },
-  {
-    title: 'Product Design Student',
-    desc: 'Learning user research, prototyping, product strategy, and interaction design.',
-    icon: FiBookOpen,
   },
 ];
 

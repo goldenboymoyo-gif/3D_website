@@ -22,7 +22,7 @@ export const PROJECTS = [
     live: 'https://pugnera-web.vercel.app/',
     github: null,
     image: pugneraImg,
-    description: 'A boxing streaming platform for Africa, co-founded by me, with fight schedules, fighter profiles, results, rankings, news and live and on-demand viewing.',
+    description: 'A boxing streaming platform for Africa, cofounded by me, with fight schedules, fighter profiles, results, rankings, news and live and on demand viewing.',
     tech: ['Next.js', 'React', 'Supabase', 'Express'],
   },
   {
@@ -42,7 +42,7 @@ export const PROJECTS = [
     live: 'https://mutotours-travel.com/',
     github: null,
     image: mutoImg,
-    description: 'A cinematic tour and safari website for Muto Tours with smooth scrolling, scroll-driven animation, an interactive map and a cookie-consent flow.',
+    description: 'A cinematic tour and safari website for Muto Tours with smooth scrolling, scroll driven animation, an interactive map and a cookie consent flow.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Leaflet'],
   },
   {
@@ -62,7 +62,7 @@ export const PROJECTS = [
     live: 'https://www.thearthousevictoriafalls.com/',
     github: null,
     image: artHouseImg,
-    description: 'A direct-booking website for a four-bedroom self-catering house in Victoria Falls, with a gallery, guest reviews and local area guides.',
+    description: 'A direct booking website for a four bedroom self catering house in Victoria Falls, with a gallery, guest reviews and local area guides.',
     tech: ['Next.js', 'React', 'Express'],
   },
   {
