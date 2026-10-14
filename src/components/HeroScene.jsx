@@ -21,7 +21,7 @@ export default function HeroScene() {
     mount.appendChild(renderer.domElement);
 
     const coreGeo = new THREE.IcosahedronGeometry(2.1, 1);
-    const coreMat = new THREE.MeshBasicMaterial({ color: 0xdc2626, wireframe: true, transparent: true, opacity: 0.55 });
+    const coreMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.55 });
     const core = new THREE.Mesh(coreGeo, coreMat);
     scene.add(core);
 
@@ -60,7 +60,7 @@ export default function HeroScene() {
       accentPositions[i * 3 + 2] = r * Math.cos(phi);
     }
     accentGeo.setAttribute('position', new THREE.BufferAttribute(accentPositions, 3));
-    const accentMat = new THREE.PointsMaterial({ color: 0xdc2626, size: 0.09, transparent: true, opacity: 0.9 });
+    const accentMat = new THREE.PointsMaterial({ color: 0x3b82f6, size: 0.09, transparent: true, opacity: 0.9 });
     const accents = new THREE.Points(accentGeo, accentMat);
     scene.add(accents);
 
@@ -111,18 +111,18 @@ export default function HeroScene() {
     const applyTheme = () => {
       const light = isLight();
       scene.background = new THREE.Color(light ? 0xf8f9fa : 0x0a0a0a);
-      // Core wireframe: crimson in both modes, higher opacity in light
-      coreMat.color.setHex(0xdc2626);
+      // Core wireframe: blue in both modes, higher opacity in light
+      coreMat.color.setHex(0x3b82f6);
       coreMat.opacity = light ? 0.5 : 0.55;
       // Inner wireframe: dark in light mode, white in dark
       innerMat.color.setHex(light ? 0x111827 : 0xffffff);
       innerMat.opacity = light ? 0.25 : 0.18;
-      // Particles: crimson in light mode for pop, white in dark
-      particleMat.color.setHex(light ? 0xdc2626 : 0xffffff);
+      // Particles: blue in light mode for pop, white in dark
+      particleMat.color.setHex(light ? 0x3b82f6 : 0xffffff);
       particleMat.opacity = light ? 0.4 : 0.55;
       particleMat.size = light ? 0.045 : 0.035;
-      // Accent dots: always crimson, stronger in light
-      accentMat.color.setHex(0xdc2626);
+      // Accent dots: always blue, stronger in light
+      accentMat.color.setHex(0x3b82f6);
       accentMat.opacity = light ? 1.0 : 0.9;
       accentMat.size = light ? 0.11 : 0.09;
     };

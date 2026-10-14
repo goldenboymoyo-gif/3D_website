@@ -8,7 +8,7 @@ const isLight = () => document.documentElement.classList.contains('light');
 const KB = [
   {
     keywords: ['project', 'work', 'portfolio', 'built', 'made', 'create'],
-    answer: "Bright has built 14+ projects including:\n\n• **Vic Falls TeleVivi** — Tourism platform (React, GSAP)\n• **Ironvale Construction** — Corporate site (Three.js)\n• **HomeLink** — Real estate platform (React, Node.js, MongoDB)\n• **VFBA Attendance** — Gym management system (Next.js, Firebase)\n• **Boma Experience** — Tourism experience site (React)\n• **Brief Wire** — News application (React)\n\nVisit the Projects section to see them all!",
+    answer: "Bright has built 14+ projects including:\n\n• **Pugnera** — Boxing streaming platform (Next.js, Supabase)\n• **Argos Worldwide** — Commodities company site (React, Node.js)\n• **Muto Tours** — Tourism website (Next.js, GSAP)\n• **VOBI Ministries** — Church website (Next.js)\n• **Ironvale Construction** — Corporate site (Three.js)\n• **VFBA Attendance** — Gym management system (Next.js, Firebase)\n• **Boma Experience** — Tourism experience site (React)\n• **Brief Wire** — News application (React)\n\nVisit the Projects section to see them all!",
   },
   {
     keywords: ['skill', 'tech', 'stack', 'language', 'know', 'use', 'tool'],
@@ -32,7 +32,7 @@ const KB = [
   },
   {
     keywords: ['journey', 'timeline', 'history', 'learn', 'start'],
-    answer: "Bright's journey:\n\n1. Started learning HTML & CSS\n2. Learned JavaScript\n3. Built first responsive website\n4. Started learning React\n5. Designed UI/UX projects\n6. Built HomeLink, Ironvale, TeleVivi\n7. Built VFBA Attendance System\n8. Currently learning backend (Firebase & Python)\n\n**Future goal:** Become a full-stack developer building products used across Africa.",
+    answer: "Bright's journey:\n\n1. Started learning HTML & CSS\n2. Learned JavaScript\n3. Built first responsive website\n4. Started learning React\n5. Designed UI/UX projects\n6. Built Ironvale, Muto Tours, Argos Worldwide and Pugnera\n7. Built VFBA Attendance System\n8. Currently learning backend (Firebase & Python)\n\n**Future goal:** Become a full-stack developer building products used across Africa.",
   },
   {
     keywords: ['location', 'where', 'live', 'city', 'country'],

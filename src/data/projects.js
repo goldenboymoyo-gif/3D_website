@@ -1,6 +1,4 @@
-import televiviImg from '../assets/vicfalls_televivi.png';
 import ironvaleImg from '../assets/ironvale.png';
-import homelinkImg from '../assets/homelink.png';
 import vfbaImg from '../assets/vfba-website.png';
 import softwarePortImg from '../assets/software_port.png';
 import briefwireImg from '../assets/briefwire.png';
@@ -10,7 +8,63 @@ import ignatiusImg from '../assets/ignatius.png';
 import tmpicknpayImg from '../assets/tmpicknpay.png';
 import jumpstartImg from '../assets/Screenshot 2026-07-17 190121.png';
 
+import pugneraImg from '../assets/pugnera.jpg';
+import argosImg from '../assets/argos.jpg';
+import mutoImg from '../assets/muto.jpg';
+import vobiImg from '../assets/vobi.jpg';
+import artHouseImg from '../assets/thearthouse.jpg';
+
 export const PROJECTS = [
+  {
+    id: 'pugnera',
+    title: 'Pugnera',
+    category: 'Boxing Streaming Platform',
+    live: 'https://pugnera-web.vercel.app/',
+    github: null,
+    image: pugneraImg,
+    description: 'A boxing streaming platform for Africa, co-founded by me, with fight schedules, fighter profiles, results, rankings, news and live and on-demand viewing.',
+    tech: ['Next.js', 'React', 'Supabase', 'Express'],
+  },
+  {
+    id: 'argos',
+    title: 'Argos Worldwide',
+    category: 'Commodities Company Website',
+    live: 'https://argos-worldwide.vercel.app/',
+    github: null,
+    image: argosImg,
+    description: 'Website and backend for a commodity intermediary that connects buyers with suppliers worldwide, including a mandate submission flow and secure API.',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'PostgreSQL'],
+  },
+  {
+    id: 'muto',
+    title: 'Muto Tours',
+    category: 'Tourism Website',
+    live: 'https://mutotours-travel.com/',
+    github: null,
+    image: mutoImg,
+    description: 'A cinematic tour and safari website for Muto Tours with smooth scrolling, scroll-driven animation, an interactive map and a cookie-consent flow.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Leaflet'],
+  },
+  {
+    id: 'vobi',
+    title: 'VOBI Ministries',
+    category: 'Church Website',
+    live: 'https://www.vobiministries.org/',
+    github: null,
+    image: vobiImg,
+    description: 'The full website for Valley of Blessings International Ministries in Victoria Falls, with live services, VOBI TV, events, an online store and contact tools.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'PostgreSQL'],
+  },
+  {
+    id: 'arthouse',
+    title: 'The Art House',
+    category: 'Accommodation Booking Website',
+    live: 'https://thearthouse.vercel.app/',
+    github: null,
+    image: artHouseImg,
+    description: 'A direct-booking website for a four-bedroom self-catering house in Victoria Falls, with a gallery, guest reviews and local area guides.',
+    tech: ['Next.js', 'React', 'Express'],
+  },
   {
     id: 'boma',
     title: 'Boma Experience',
@@ -63,16 +117,6 @@ export const PROJECTS = [
     tech: ['React', 'Tailwind CSS', 'Vercel'],
   },
   {
-    id: 'televivi',
-    title: 'Vic Falls TeleVivi',
-    category: 'Tourism Website',
-    live: 'https://vic-falls-televivi.vercel.app/',
-    github: null,
-    image: televiviImg,
-    description: 'A modern tourism platform showcasing Victoria Falls through engaging storytelling, destination highlights, multimedia content, and responsive design.',
-    tech: ['React', 'Tailwind CSS', 'GSAP', 'Vercel'],
-  },
-  {
     id: 'ironvale',
     title: 'Ironvale Construction',
     category: 'Construction Company Website',
@@ -81,16 +125,6 @@ export const PROJECTS = [
     image: ironvaleImg,
     description: 'A professional construction company website featuring premium branding, modern layouts, responsive sections, service showcases, and contact functionality.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Three.js'],
-  },
-  {
-    id: 'homelink',
-    title: 'HomeLink',
-    category: 'Real Estate Platform',
-    live: 'https://homelink-one.vercel.app/',
-    github: null,
-    image: homelinkImg,
-    description: 'A modern real estate website designed to help users browse and discover properties through an intuitive interface and engaging user experience.',
-    tech: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB'],
   },
   {
     id: 'devportfolio',
