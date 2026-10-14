@@ -59,7 +59,7 @@ export const PROJECTS = [
     id: 'arthouse',
     title: 'The Art House',
     category: 'Accommodation Booking Website',
-    live: 'https://thearthouse.vercel.app/',
+    live: 'https://www.thearthousevictoriafalls.com/',
     github: null,
     image: artHouseImg,
     description: 'A direct-booking website for a four-bedroom self-catering house in Victoria Falls, with a gallery, guest reviews and local area guides.',
